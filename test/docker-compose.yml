@@ -1,0 +1,26 @@
+services:
+  fastapi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - ENV_VAR_NAME=value
+    networks:
+      - deploy_network
+    container_name: fastapi
+
+  streamlit:
+    build: streamlit/
+    depends_on:
+      - fastapi
+    ports:
+      - 8501:8501
+    networks:
+      - deploy_network
+    container_name: streamlit
+
+networks:
+  deploy_network:
+    driver: bridge

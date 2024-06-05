@@ -1,12 +1,16 @@
+import io
+
 import torch
 from PIL import Image
 from torchvision import transforms
 from torchvision.models.segmentation import deeplabv3_resnet50
 
+
 def get_segmentator():
     model = deeplabv3_resnet50(pretrained=True)
     model.eval()
     return model
+
 
 def get_segments(model, file):
     input_image = Image.open(io.BytesIO(file)).convert('RGB')

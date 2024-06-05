@@ -1,7 +1,9 @@
+version: '3.8'
+
 services:
-  fastapi:
+  backend:
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
     ports:
       - "8000:8000"
@@ -9,17 +11,19 @@ services:
       - ENV_VAR_NAME=value
     networks:
       - deploy_network
-    container_name: fastapi
+    container_name: backend
 
-  streamlit:
-    build: streamlit/
+  frontend-test:
+    build:
+      context: ./frontend-test
+      dockerfile: Dockerfile
     depends_on:
-      - fastapi
+      - backend
     ports:
-      - 8501:8501
+      - "8501:8501"
     networks:
       - deploy_network
-    container_name: streamlit
+    container_name: frontend-test
 
 networks:
   deploy_network:

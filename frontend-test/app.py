@@ -4,14 +4,15 @@ import requests
 from PIL import Image
 import io
 
-st.title('DeepLabV3 image segmentation')
+st.title("Image Generation with Diffusion Model")
 
 # FastAPI endpoint
 # url = 'http://fastapi:8000'
-url = 'http://backend:8000'
+# url = 'http://backend:8000'
+url = 'http://localhost:8000'
 endpoint = '/segmentation'
 
-st.write('''Obtain semantic segmentation maps of the image in input via DeepLabV3 implemented in PyTorch.
+st.write('''Generate images using a pretrained diffusion model.
          This frontend-test example uses a FastAPI service as backend.
          Visit this URL at `:8000/docs` for FastAPI documentation.''')
 
@@ -24,7 +25,7 @@ def process(image, server_url: str):
     return r
 
 
-if st.button('Get segmentation map'):
+if st.button('Generate background'):
     if image is None:
         st.write("Insert an image!")
     else:

@@ -19,7 +19,7 @@ def get_generator():
     print("Loading model...")
     model_id = "yahoo-inc/photo-background-generation"
     pipeline = DiffusionPipeline.from_pretrained(model_id, custom_pipeline=model_id)
-    # pipeline = pipeline.to('cuda')
+    pipeline = pipeline.to('cuda')
     print("Model loaded successfully.")
     return pipeline
 

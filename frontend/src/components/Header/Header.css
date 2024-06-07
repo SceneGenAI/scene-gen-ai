@@ -1,0 +1,82 @@
+.header {
+    max-width: 1920px;
+    height: 64px;
+    padding: 0 5%;
+    margin: 0 auto;
+    color: var(--text-color);
+    font-size: var(--fontsize-medium1);
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-section {
+    display: flex;
+    align-items: center;
+}
+
+.header-left {
+    width: 35%;
+}
+
+.header-center {
+    width: 7%;
+    display: flex;
+    justify-content: center;
+}
+
+.header-right {
+    width: 35%;
+}
+
+.header-right .header-item {
+    width: 50%;
+}
+
+.moon-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    padding-left: 1rem;
+}
+
+.sign-in-button {
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+}
+
+.sign-in-button p {
+    margin: 0 auto;
+    color: var(--bg-color);
+}
+
+@media only screen and (max-width: 1280px) {
+    .header {
+        padding: 0 5%;
+        font-size: var(--fontsize-medium1);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 0;
+        height: 3.5rem;
+    }
+    .header-section {
+        display: none;
+        align-items: center;
+    }
+    .nav {
+        justify-content: space-around;
+        height: 100%;
+    }
+    .nav .header-left {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+}

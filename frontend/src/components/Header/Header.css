@@ -35,23 +35,60 @@
     width: 50%;
 }
 
+.header-item {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .moon-icon {
     width: 1.5rem;
     height: 1.5rem;
     padding-left: 1rem;
 }
 
-.sign-in-button {
+.sign-up-button {
     background-color: var(--secondary-color);
     border-radius: 5px;
-    height: 64px;
+    height: 3rem;
+    width: 100%;
     display: flex;
     align-items: center;
 }
 
-.sign-in-button p {
+.sign-up-button p {
     margin: 0 auto;
     color: var(--bg-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+.underlined {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+a:link {
+    color: var(--text-color);
+}
+
+a:visited {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.underlined:hover {
+    /* outline: 0 10px solid black; */
+    /* box-shadow: 0 -3px 0 var(--text-color) inset; */
+    border-bottom: 2px solid var(--text-color);
+}
+
+.sign-up-button:hover {
+    box-shadow: 0px 4px 4px 2px var(--secondary-text-color);
 }
 
 @media only screen and (max-width: 1280px) {

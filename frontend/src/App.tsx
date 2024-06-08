@@ -1,6 +1,5 @@
 import './App.css'
 import React from 'react'
-
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Header from './components/Header/Header'
 import Home from './pages/Home/Home'
@@ -16,6 +15,8 @@ const App: React.FC = () => {
         <Route path="/" element={<Home />} />
         <Route path="/generate" element={<Generate />} />
         <Route path="/collage" element={<Collage />} />
+        {/* <Route path="/sign-in" element={<SignIn />} />
+        <Route path="/sign-up" element={<SignUp />} /> */}
       </Routes>
     </Router>
   )

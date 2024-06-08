@@ -84,7 +84,7 @@ def get_generated_picture(pipeline, file, prompt: str):
 
 if __name__ == '__main__':
     bg = BackgroundGenerator()
-    prompt = "A hammock tied to the wall with a rope."
+    prompt = "A hammock in a cozy garden with blooming flowers."
     # prompt = "A radiator on the floor of the living room with grey-blue walls"
     with open("data/gamak.png", "rb") as f:
         file = f.read()

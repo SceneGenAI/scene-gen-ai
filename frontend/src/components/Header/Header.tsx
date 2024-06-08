@@ -16,7 +16,7 @@ const Header: React.FC = () => {
             <Link to="/generate" className='underlined'>Ru</Link>
           </div>
           <div className="header-item">
-            <img src="./src/components/icons/temp.svg" alt="moon-icon" className="moon-icon" />
+            <img src="./src/components/icons/MoonIcon.svg" alt="moon-icon" className="moon-icon" />
           </div>
         </div>
         <div className="header-section header-right">

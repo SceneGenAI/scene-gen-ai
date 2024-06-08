@@ -10,7 +10,7 @@ st.title("Image Generation with Diffusion Model")
 # url = 'http://fastapi:8000'
 # url = 'http://backend:8000'
 url = 'http://localhost:8000'
-endpoint = '/segmentation'
+endpoint = '/background-generation'
 
 st.write('''Generate images using a pretrained diffusion model.
          This frontend-test example uses a FastAPI service as backend.

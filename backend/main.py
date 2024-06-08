@@ -15,7 +15,7 @@ app = FastAPI(title="Image Generation with Diffusion Model",
               version="0.1.0")
 
 
-@app.post("/segmentation")
+@app.post("/background-generation")
 def generate_image(file: bytes = File(...)):
     try:
         generated_image = get_generated_picture(pipeline, file)

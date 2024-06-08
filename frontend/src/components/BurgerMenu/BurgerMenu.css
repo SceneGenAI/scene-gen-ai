@@ -22,7 +22,7 @@
         z-index: 1001;
     }
 
-    .burger-icon .line {
+    .burger-icon .burger-line {
         width: 100%;
         height: 4px;
         border-radius: 10px;
@@ -30,19 +30,19 @@
         transition: all 0.3s ease;
     }
 
-    .burger-icon.open .line:nth-child(1) {
+    .burger-icon.open .burger-line:nth-child(1) {
         transform: rotate(45deg) translate(5px, 6px);
     }
 
-    .burger-icon.open .line:nth-child(2) {
+    .burger-icon.open .burger-line:nth-child(2) {
         opacity: 0;
     }
 
-    .burger-icon.open .line:nth-child(3) {
+    .burger-icon.open .burger-line:nth-child(3) {
         transform: rotate(-45deg) translate(5px, -6px);
     }
 
-    .menu {
+    .burger-content-menu {
         position: absolute;
         top: 0;
         right: 0;
@@ -54,11 +54,11 @@
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
     }
 
-    .menu.open {
+    .burger-content-menu.open {
         transform: translateY(0);
     }
 
-    .content {
+    .burger-content {
         display: flex;
         align-items: center;
         flex-direction: column;
@@ -67,7 +67,12 @@
         padding: auto 0;
     }
 
-    .container {
+    .burger-top-container {
+        flex: 50%;
+    }
+
+    .burger-container {
+        width: 40%;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -75,21 +80,39 @@
         height: 100%;
     }
 
-    .line {
+    .burger-container-line {
         display: flex;
         align-items: center;
         justify-content: space-around;
         height: 3rem;
-        width: 8rem;
+        width: 100%;
     }
 
-    .sign-in-button {
+    .burger-sign-in-button {
+        cursor: pointer;
         height: 3rem;
-        width: 8rem;
-        margin: 0 auto;
+        background-color: var(--secondary-color);
+        border-radius: 5px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
     }
 
-    .moon-icon {
+    .burger-sign-in-button p {
+        color: var(--bg-color);
+    }
+
+    .burger-sign-up-button:hover {
+        background-color: var(--secondary-blur-color);
+    }
+
+    .burger-theme {
+        cursor: pointer;
+    }
+
+    .burger-theme-icon {
+        height: var(--fontsize-large);
         padding: 0;
     }
 }

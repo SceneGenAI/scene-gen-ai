@@ -1,6 +1,7 @@
+import './GeneratorForm.css'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import './GeneratorForm.css'
+import { useTranslation } from 'react-i18next'
 import Dropdown from '../Dropdown/Dropdown'
 import TextField from '../TextField/TextField'
 
@@ -15,8 +16,8 @@ const Generator: React.FC<GeneratorProps> = ({
   dropdownOptions2,
   responseReceived,
 }) => {
+  const { t }: { t: (key: string) => string } = useTranslation() // Define the type of t explicitly
   const defaultTextValue = ''
-
   const [dropdownValue1, setDropdownValue1] = useState<number>(
     dropdownOptions2.length > 0 ? dropdownOptions2[0].value : 0,
   )
@@ -44,30 +45,46 @@ const Generator: React.FC<GeneratorProps> = ({
   return (
     <div className="generator-container">
       {!responseReceived ? (
-        <div>Загрузка...</div>
+        <div>{t('Loading')}</div>
       ) : (
-        <div className="input-container">
-          <div className="input-field">
+        <div className="generator-input-container">
+          <div className="generator-input-field">
             {useTextField ? (
-              <TextField value={textValue1} onChange={setTextValue1} label="Фон" />
+              <TextField value={textValue1} onChange={setTextValue1} label={t('Background')} />
             ) : (
-              <Dropdown options={dropdownOptions1} onChange={setDropdownValue1} label="Фон" />
+              <Dropdown
+                options={dropdownOptions1}
+                onChange={setDropdownValue1}
+                label={t('Background')}
+              />
             )}
           </div>
-          <div className="input-field">
+          <div className="generator-input-field">
             {useTextField ? (
-              <TextField value={textValue2} onChange={setTextValue2} label="Стиль" />
+              <TextField value={textValue2} onChange={setTextValue2} label={t('Style')} />
             ) : (
-              <Dropdown options={dropdownOptions2} onChange={setDropdownValue2} label="Стиль" />
+              <Dropdown
+                options={dropdownOptions2}
+                onChange={setDropdownValue2}
+                label={t('Style')}
+              />
             )}
           </div>
         </div>
       )}
-      <button className="generate-button" onClick={handleGenerate} disabled={!responseReceived}>
-        Сгенерировать
+      <button
+        className="generator-generate-button"
+        onClick={handleGenerate}
+        disabled={!responseReceived}
+      >
+        {t('Generate')}
       </button>
-      <button className="toggle-button" onClick={toggleInputType} disabled={!responseReceived}>
-        {useTextField ? 'Вернуться' : 'Не устроил фон или стиль?'}
+      <button
+        className="generator-toggle-button"
+        onClick={toggleInputType}
+        disabled={!responseReceived}
+      >
+        {useTextField ? t('Back') : t('Not satisfied with the background or style?')}{' '}
       </button>
     </div>
   )

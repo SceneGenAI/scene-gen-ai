@@ -1,11 +1,13 @@
-import React, { useRef, useState, useEffect } from 'react'
 import './DropButton.css'
+import React, { useRef, useState, useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 interface DropButtonProps {
   onImageUpload: (files: FileList) => void
 }
 
 const DropButton: React.FC<DropButtonProps> = ({ onImageUpload }) => {
+  const { t } = useTranslation()
   const [isDragging, setIsDragging] = useState(false)
   const fileInputRef = useRef<HTMLInputElement | null>(null)
 
@@ -57,10 +59,10 @@ const DropButton: React.FC<DropButtonProps> = ({ onImageUpload }) => {
 
   return (
     <div className="drop-button-container" onClick={handleClick}>
-      <p>Выберите файл</p>
+      <p>{t('Choose file')}</p>
       <input
         type="file"
-        id="file"
+        id="drop-button-file"
         multiple
         ref={fileInputRef}
         onChange={handleFileInputChange}

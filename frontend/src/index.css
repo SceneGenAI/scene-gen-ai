@@ -135,6 +135,7 @@ table {
     /* Colors */
     --bg-color: #fcfcfc;
     --secondary-bg-color: #ffffff;
+    --third-bg-color: #f1f1f1;
     --secondary-color: rgb(102, 192, 93); /* #66c05d */
     --secondary-blur-color: rgba(102, 192, 93, 0.7);
     --text-color: #2b2b2b;
@@ -163,6 +164,7 @@ table {
     font-synthesis: none;
     font-size: var(--fontsize-medium1);
     background-color: var(--bg-color);
+    color: var(--text-color);
 }
 
 @media only screen and (max-width: 1280px) {
@@ -177,10 +179,14 @@ table {
     }
 }
 
-[color-scheme='light'] {
-    --main-color: #fcfcfc;
-    --content-color: #373a3d;
-    --title-color: #2b2b2b;
-    --secondary-bg-color: #de9b8a;
-    --not-chosen-font-color: #78797b;
+[color-scheme='dark'] {
+    --bg-color: #2b2b2b;
+    --secondary-bg-color: #333333;
+    --third-bg-color: #141414;
+    --secondary-color: rgb(102, 192, 93); /* #66c05d */
+    --secondary-blur-color: rgba(102, 192, 93, 0.7);
+    --text-color: #fcfcfc;
+    --secondary-text-color: #c5c5c5;
+    --border-color: #575757;
+    --blur: rgba(var(--secondary-bg-color), 0.6);
 }

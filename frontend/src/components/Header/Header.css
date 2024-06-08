@@ -17,7 +17,7 @@
     background-color: var(--bg-color);
 }
 
-.nav {
+.header-nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -53,9 +53,18 @@
     align-items: center;
 }
 
-.moon-icon {
-    width: 1.5rem;
-    height: 1.5rem;
+.language-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: inherit;
+    color: inherit;
+}
+
+.theme-icon {
+    cursor: pointer;
+    width: 1.3rem;
+    height: 1.3rem;
     padding-left: 1rem;
 }
 
@@ -66,21 +75,20 @@
     width: 100%;
     display: flex;
     align-items: center;
+    cursor: pointer;
+    justify-content: space-around;
 }
 
 .sign-up-button p {
-    margin: 0 auto;
     color: var(--bg-color);
+}
+
+.sign-up-button:hover {
+    background-color: var(--secondary-blur-color);
 }
 
 a {
     text-decoration: none;
-}
-
-.underlined {
-    height: 100%;
-    display: flex;
-    align-items: center;
 }
 
 a:link {
@@ -92,12 +100,14 @@ a:visited {
     color: var(--text-color);
 }
 
-.underlined:hover {
-    border-bottom: 2px solid var(--text-color);
+.underlined {
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
-.sign-up-button:hover {
-    box-shadow: 0px 4px 4px 2px var(--secondary-text-color);
+.underlined:hover {
+    border-bottom: 2px solid var(--text-color);
 }
 
 @media only screen and (max-width: 1280px) {
@@ -117,11 +127,11 @@ a:visited {
         display: none;
         align-items: center;
     }
-    .nav {
+    .header-nav {
         justify-content: space-around;
         height: 100%;
     }
-    .nav .header-left {
+    .header-nav .header-left {
         display: flex;
         align-items: center;
         justify-content: space-around;

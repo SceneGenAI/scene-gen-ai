@@ -1,6 +1,7 @@
+import './Collage.css'
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import './Collage.css'
+import { useTheme, Theme } from '../../contexts/ThemeProvider'
 
 interface DropdownOption {
   value: string
@@ -8,6 +9,7 @@ interface DropdownOption {
 }
 
 const Collage: React.FC = () => {
+  const { theme } = useTheme()
   const location = useLocation()
   const { options } = location.state as {
     options: { value1: DropdownOption; value2: DropdownOption }
@@ -48,9 +50,9 @@ const Collage: React.FC = () => {
         <div>Загрузка...</div>
       ) : (
         <div className="collage">
-          <div className="image-display-container-collage">
+          <div className="collage-image-display-container">
             {images.map((image, index) => (
-              <div className="image-preview-container-collage" key={index}>
+              <div className="collage-image-preview-container" key={index}>
                 <a
                   href={`data:image/png;base64,${btoa(image)}`}
                   download={`collage_${index + 1}.png`}
@@ -58,14 +60,22 @@ const Collage: React.FC = () => {
                   <img
                     src={`data:image/png;base64,${btoa(image)}`}
                     alt={`Collage ${index + 1}`}
-                    className="image-preview-collage"
+                    className="collage-image-preview"
                   />
                 </a>
-                <img
-                  src="./src/components/icons/Download.svg"
-                  alt={`download ${index + 1}`}
-                  className="download-icon"
-                />
+                {theme === Theme.LIGHT ? (
+                  <img
+                    src="./src/components/icons/DownloadLight.svg"
+                    alt={`download ${index + 1}`}
+                    className="collage-download-icon"
+                  />
+                ) : (
+                  <img
+                    src="./src/components/icons/DownloadDark.svg"
+                    alt={`download ${index + 1}`}
+                    className="collage-download-icon"
+                  />
+                )}
               </div>
             ))}
           </div>

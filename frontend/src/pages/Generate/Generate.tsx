@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
 import './Generate.css'
+import React, { useState } from 'react'
 import GeneratorForm from '../../components/GeneratorForm/GeneratorForm'
 import DropButton from '../../components/DropButton/DropButton'
 
@@ -47,10 +47,12 @@ const Generate: React.FC = () => {
 
   return (
     <div className="generate">
-      <div className="image-display-container-generate">
-        {imageSrc && <img src={imageSrc} alt="Uploaded Preview" className="image-preview" />}
+      <div className="generate-image-display-container">
+        {imageSrc && (
+          <img src={imageSrc} alt="Uploaded Preview" className="generate-image-preview" />
+        )}
       </div>
-      <div className="button-container-generate">
+      <div className="generate-button-container">
         <DropButton onImageUpload={handleImageUpload} />
       </div>
       <GeneratorForm

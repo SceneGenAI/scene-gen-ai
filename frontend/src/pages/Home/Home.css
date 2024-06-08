@@ -1,28 +1,28 @@
-.text-container-home {
+.home-text-container {
     margin-top: 8%;
 }
 
-.button-container-home {
+.home-button-container {
     margin-top: 4%;
 }
 
-.images-container-home {
+.home-images-container {
     margin-top: 4%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.text-container-home-header {
+.home-text-container-header {
     font-size: var(--fontsize-x-large);
     padding-bottom: 1%;
 }
 
-.text-container-home-description {
+.home-text-container-description {
     font-size: var(--fontsize-large);
 }
 
-.begin-button {
+.home-begin-button {
     background-color: var(--secondary-color);
     border-radius: 5px;
     height: 4rem;
@@ -32,31 +32,31 @@
     align-items: center;
 }
 
-.begin-button:hover {
+.home-begin-button:hover {
     background-color: var(--secondary-blur-color);
 }
 
-.begin-button p {
+.home-begin-button p {
     margin: 0 auto;
     color: var(--bg-color);
 }
 
-.img-show {
+.home-img-show {
     width: 30%;
 }
 
-.arrow {
+.home-arrow {
     z-index: -1;
     width: 7%;
     margin: 0 3%;
 }
 
 @media only screen and (max-width: 1280px) {
-    .text-container-home-header {
+    .home-text-container-header {
         font-size: var(--fontsize-large);
     }
 
-    .text-container-home-description {
+    .home-text-container-description {
         font-size: var(--fontsize-medium1);
     }
 }
@@ -69,19 +69,19 @@
         justify-content: space-evenly;
     }
 
-    .text-container-home {
+    .home-text-container {
         margin-top: 0;
     }
 
-    .begin-button {
+    .home-begin-button {
         width: 50%;
     }
 
-    .button-container {
+    .home-button-container {
         margin-top: 0;
     }
 
-    .images-container-home {
+    .home-images-container {
         margin-top: 0;
         display: flex;
         flex-direction: column;
@@ -89,11 +89,11 @@
         justify-content: center;
     }
 
-    .img-show {
+    .home-img-show {
         width: 60%;
     }
 
-    .arrow {
+    .home-arrow {
         height: 2rem;
         width: 3rem;
         transform: rotate(90deg);

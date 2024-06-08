@@ -1,5 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
 import './Dropdown.css'
+import React, { useState, useEffect, useRef } from 'react'
+import { useTheme, Theme } from '../../contexts/ThemeProvider'
 
 interface Option {
   value: number
@@ -13,12 +14,12 @@ interface DropdownProps {
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ options, onChange, label }) => {
+  const { theme } = useTheme()
   const [isOpen, setIsOpen] = useState<boolean>(false)
   const [selectedValue, setSelectedValue] = useState<number>(0)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    // Set selected value to the first option value if options exist and selectedValue is not set
     if (options.length > 0 && !selectedValue) {
       setSelectedValue(options[0].value)
     }
@@ -56,11 +57,19 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onChange, label }) => {
         <div className="dropdown-header-text">
           {options.find((option) => option.value === selectedValue)?.label || 'Пусто'}{' '}
         </div>
-        <img
-          src="./src/components/icons/DropdownArrow.svg"
-          alt="dropdown-arrow"
-          className={`dropdown-arrow ${isOpen ? 'open' : ''}`}
-        />
+        {theme === Theme.LIGHT ? (
+          <img
+            src="./src/components/icons/DropdownArrowLight.svg"
+            alt="dropdown-arrow"
+            className={`dropdown-arrow ${isOpen ? 'open' : ''}`}
+          />
+        ) : (
+          <img
+            src="./src/components/icons/DropdownArrowDark.svg"
+            alt="dropdown-arrow"
+            className={`dropdown-arrow ${isOpen ? 'open' : ''}`}
+          />
+        )}
       </div>
       {isOpen && (
         <div className="dropdown-options">

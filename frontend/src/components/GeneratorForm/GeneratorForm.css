@@ -1,0 +1,73 @@
+.generator-container {
+    width: 50%;
+    height: 30%;
+    background-color: var(--secondary-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 30px var(--secondary-text-color);
+    border-radius: 5px 5px 0 0;
+    padding: 3% 3% 1% 3%;
+}
+
+.input-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.input-field {
+    width: 40%;
+}
+
+.generate-button {
+    padding: 1rem 2rem;
+    font-size: var(--fontsize-medium1);
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--border-color);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.generate-button:hover {
+    background-color: var(--secondary-blur-color);
+}
+
+.generate-button[disabled] {
+    opacity: 0.6;
+}
+
+.generate-button:hover[disabled] {
+    background-color: var(--secondary-color);
+    cursor: not-allowed;
+}
+
+.toggle-button {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+    font-size: var(--fontsize-small);
+    text-decoration: underline;
+}
+
+.toggle-button:hover {
+    color: var(--secondary-color-hover);
+}
+
+@media only screen and (max-width: 480px) {
+    .generator-container {
+        width: 80%;
+        padding: 5%;
+        justify-content: space-evenly;
+    }
+
+    .input-field {
+        width: 45%;
+    }
+
+}

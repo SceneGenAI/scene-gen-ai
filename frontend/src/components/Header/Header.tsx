@@ -13,7 +13,7 @@ const Header: React.FC = () => {
         </div>
         <div className="header-section header-center">
           <div className="header-item">
-            <Link to="/generate" className="underlined">
+            <Link to="/collage" className="underlined">
               Ru
             </Link>
           </div>

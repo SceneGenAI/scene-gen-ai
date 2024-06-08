@@ -28,7 +28,11 @@ const BurgerMenu: React.FC = () => {
             </div>
             <div className="line">
               <div className="item">
-                <img src="./src/components/icons/temp.svg" alt="moon-icon" className="moon-icon" />
+                <img
+                  src="./src/components/icons/MoonIcon.svg"
+                  alt="moon-icon"
+                  className="moon-icon"
+                />
               </div>
             </div>
           </div>

@@ -83,7 +83,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
-    height: var(--fontsize-medium1  );
+    height: var(--fontsize-medium1);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

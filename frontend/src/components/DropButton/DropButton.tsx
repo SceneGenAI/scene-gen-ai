@@ -1,63 +1,59 @@
-import React, { useRef, useState, useEffect } from 'react';
-import './DropButton.css';
+import React, { useRef, useState, useEffect } from 'react'
+import './DropButton.css'
 
 interface DropButtonProps {
-  onImageUpload: (files: FileList) => void;
+  onImageUpload: (files: FileList) => void
 }
 
 const DropButton: React.FC<DropButtonProps> = ({ onImageUpload }) => {
-  const [isDragging, setIsDragging] = useState(false);
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [isDragging, setIsDragging] = useState(false)
+  const fileInputRef = useRef<HTMLInputElement | null>(null)
 
   const handleDrop = (event: DragEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setIsDragging(false);
-    const files = event.dataTransfer?.files;
+    event.preventDefault()
+    event.stopPropagation()
+    setIsDragging(false)
+    const files = event.dataTransfer?.files
     if (files && files.length) {
-      onImageUpload(files); // Pass FileList object
+      onImageUpload(files)
     }
-  };
+  }
 
   const handleDragOver = (event: DragEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setIsDragging(true);
-  };
+    event.preventDefault()
+    event.stopPropagation()
+    setIsDragging(true)
+  }
 
   const handleDragLeave = (event: DragEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setIsDragging(false);
-  };
-
-  const handleFilesUpload = (files: FileList) => {
-    onImageUpload(files); // Pass FileList object directly
-  };
+    event.preventDefault()
+    event.stopPropagation()
+    setIsDragging(false)
+  }
 
   const handleFileInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const files = event.target.files;
+    const files = event.target.files
     if (files && files.length) {
-      onImageUpload(files); // Pass FileList object
+      onImageUpload(files)
     }
-  };
+  }
 
   const handleClick = () => {
     if (fileInputRef.current) {
-      fileInputRef.current.click();
+      fileInputRef.current.click()
     }
-  };
+  }
 
   useEffect(() => {
-    document.addEventListener('drop', handleDrop);
-    document.addEventListener('dragover', handleDragOver);
-    document.addEventListener('dragleave', handleDragLeave);
+    document.addEventListener('drop', handleDrop)
+    document.addEventListener('dragover', handleDragOver)
+    document.addEventListener('dragleave', handleDragLeave)
     return () => {
-      document.removeEventListener('drop', handleDrop);
-      document.removeEventListener('dragover', handleDragOver);
-      document.removeEventListener('dragleave', handleDragLeave);
-    };
-  }, []);
+      document.removeEventListener('drop', handleDrop)
+      document.removeEventListener('dragover', handleDragOver)
+      document.removeEventListener('dragleave', handleDragLeave)
+    }
+  }, [])
 
   return (
     <div className="drop-button-container" onClick={handleClick}>
@@ -73,7 +69,7 @@ const DropButton: React.FC<DropButtonProps> = ({ onImageUpload }) => {
       />
       {isDragging && <div className="overlay" />}
     </div>
-  );
-};
+  )
+}
 
-export default DropButton;
+export default DropButton

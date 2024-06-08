@@ -6,6 +6,7 @@
     .burger-menu {
         position: relative;
         display: block;
+        z-index: 1002;
     }
 
     .burger-icon {

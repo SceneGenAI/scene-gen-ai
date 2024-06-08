@@ -104,6 +104,7 @@ section {
 }
 
 body {
+    margin: 0;
     line-height: 1;
 }
 
@@ -134,8 +135,8 @@ table {
     /* Colors */
     --bg-color: #fcfcfc;
     --secondary-bg-color: #ffffff;
-    --secondary-color: #66c05d;
-    --secondary-blur-color: rgba(var(--secondary-color), 0.5);
+    --secondary-color: rgb(102, 192, 93); /* #66c05d */
+    --secondary-blur-color: rgba(102, 192, 93, 0.7);
     --text-color: #2b2b2b;
     --secondary-text-color: #555555;
     --border-color: #c5c5c5;

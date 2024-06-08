@@ -5,9 +5,13 @@
     margin: 0 auto;
     color: var(--text-color);
     font-size: var(--fontsize-medium1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .nav {
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -82,8 +86,6 @@ a:visited {
 }
 
 .underlined:hover {
-    /* outline: 0 10px solid black; */
-    /* box-shadow: 0 -3px 0 var(--text-color) inset; */
     border-bottom: 2px solid var(--text-color);
 }
 
@@ -100,6 +102,7 @@ a:visited {
 
 @media (max-width: 480px) {
     .header {
+        display: block;
         padding: 0;
         height: 3.5rem;
     }

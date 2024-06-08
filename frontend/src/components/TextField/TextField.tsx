@@ -1,22 +1,24 @@
-import React, { useRef } from 'react';
-import './TextField.css';
+import React, { useRef } from 'react'
+import './TextField.css'
 
 interface TextFieldProps {
-  value: string;
-  onChange: (newValue: string) => void;
-  label: string;
+  value: string
+  onChange: (newValue: string) => void
+  label: string
 }
 
 const TextField: React.FC<TextFieldProps> = ({ value, onChange, label }) => {
-  const textFieldRef = useRef<HTMLInputElement>(null);
+  const textFieldRef = useRef<HTMLInputElement>(null)
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    onChange(event.target.value);
-  };
+    onChange(event.target.value)
+  }
 
   return (
     <div className="textfield-container" ref={textFieldRef}>
-      <label className="textfield-label" htmlFor="textfield">{label}</label>
+      <label className="textfield-label" htmlFor="textfield">
+        {label}
+      </label>
       <input
         type="text"
         className="textfield-input"
@@ -26,7 +28,7 @@ const TextField: React.FC<TextFieldProps> = ({ value, onChange, label }) => {
         title={value}
       />
     </div>
-  );
-};
+  )
+}
 
-export default TextField;
+export default TextField

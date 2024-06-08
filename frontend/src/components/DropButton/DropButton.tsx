@@ -64,7 +64,6 @@ const DropButton: React.FC<DropButtonProps> = ({ onImageUpload }) => {
         multiple
         ref={fileInputRef}
         onChange={handleFileInputChange}
-        style={{ display: 'none' }}
         title="Выберите файл для загрузки"
       />
       {isDragging && <div className="overlay" />}

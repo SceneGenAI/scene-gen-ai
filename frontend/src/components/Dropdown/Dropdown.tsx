@@ -2,19 +2,19 @@ import React, { useState, useEffect, useRef } from 'react'
 import './Dropdown.css'
 
 interface Option {
-  value: string
+  value: number
   label: string
 }
 
 interface DropdownProps {
   options: Option[]
-  onChange: (selectedValue: string) => void
+  onChange: (selectedValue: number) => void
   label: string
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ options, onChange, label }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
-  const [selectedValue, setSelectedValue] = useState<string>('')
+  const [selectedValue, setSelectedValue] = useState<number>(0)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onChange, label }) => {
     setIsOpen(!isOpen)
   }
 
-  const handleOptionClick = (value: string) => {
+  const handleOptionClick = (value: number) => {
     setSelectedValue(value)
     onChange(value)
     setIsOpen(false)
@@ -54,8 +54,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onChange, label }) => {
       </label>
       <div className={`dropdown-header ${isOpen ? 'open' : ''}`} onClick={handleToggleDropdown}>
         <div className="dropdown-header-text">
-          {options.find((option) => option.value === selectedValue)?.label || 'Select'}{' '}
-          {/* Add fallback text if no selected value */}
+          {options.find((option) => option.value === selectedValue)?.label || 'Пусто'}{' '}
         </div>
         <img
           src="./src/components/icons/DropdownArrow.svg"

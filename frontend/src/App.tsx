@@ -11,6 +11,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <Header />
+      <div className="header-box"></div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/generate" element={<Generate />} />

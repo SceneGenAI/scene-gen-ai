@@ -4,19 +4,19 @@ import GeneratorForm from '../../components/GeneratorForm/GeneratorForm'
 import DropButton from '../../components/DropButton/DropButton'
 
 interface DropdownOption {
-  value: string
+  value: number
   label: string
 }
 
 const Generate: React.FC = () => {
   const [imageSrc, setImageSrc] = useState<string | null>(null)
   const [dropdownOptions1, setDropdownOptions1] = useState<DropdownOption[]>([])
-  const [responseReceived, setResponseReceived] = useState<boolean>(false) // New state
+  const [responseReceived, setResponseReceived] = useState<boolean>(false)
 
   const dropdownOptions2 = [
-    { value: 'minimalism', label: 'Минимализм' },
-    { value: 'modern', label: 'Современный' },
-    { value: 'classic', label: 'Классический' },
+    { value: 0, label: 'Минимализм' },
+    { value: 1, label: 'Современный' },
+    { value: 2, label: 'Классический' },
   ]
 
   const handleImageUpload = async (files: FileList) => {

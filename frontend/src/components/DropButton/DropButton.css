@@ -18,6 +18,10 @@
     color: var(--bg-color);
 }
 
+.drop-button-container input {
+    display: none;
+}
+
 #file {
     display: none;
 }

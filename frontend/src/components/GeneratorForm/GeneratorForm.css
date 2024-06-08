@@ -56,7 +56,15 @@
 }
 
 .toggle-button:hover {
-    color: var(--secondary-color-hover);
+    color: var(--secondary-text-color);
+}
+
+.toggle-button[disabled] {
+    color: var(--secondary-text-color);
+}
+
+.toggle-button:hover[disabled] {
+    cursor: not-allowed;
 }
 
 @media only screen and (max-width: 480px) {

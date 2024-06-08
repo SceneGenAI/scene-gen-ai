@@ -2,7 +2,7 @@
     margin-top: 8%;
 }
 
-.button-container{
+.button-container {
     margin-top: 4%;
 }
 
@@ -51,7 +51,7 @@
     .text-container-header {
         font-size: var(--fontsize-large);
     }
-    
+
     .text-container-description {
         font-size: var(--fontsize-medium1);
     }
@@ -72,11 +72,11 @@
     .begin-button {
         width: 50%;
     }
-    
-    .button-container{
+
+    .button-container {
         margin-top: 0;
     }
-    
+
     .images-container {
         margin-top: 0;
         display: flex;
@@ -95,5 +95,4 @@
         transform: rotate(90deg);
         margin: 6% 0;
     }
-
 }

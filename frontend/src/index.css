@@ -160,7 +160,7 @@ table {
 
     font-family: var(--main-font);
     font-synthesis: none;
-    font-size: var(--fontsize-large);
+    font-size: var(--fontsize-medium1);
     background-color: var(--bg-color);
 }
 

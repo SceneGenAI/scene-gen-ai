@@ -9,14 +9,16 @@ interface GeneratorProps {
   dropdownOptions1: { value: number; label: string }[]
   dropdownOptions2: { value: number; label: string }[]
   responseReceived: boolean
+  imageFile: File | null
 }
 
 const Generator: React.FC<GeneratorProps> = ({
   dropdownOptions1,
   dropdownOptions2,
   responseReceived,
+  imageFile,
 }) => {
-  const { t }: { t: (key: string) => string } = useTranslation() // Define the type of t explicitly
+  const { t }: { t: (key: string) => string } = useTranslation()
   const defaultTextValue = ''
   const [dropdownValue1, setDropdownValue1] = useState<number>(
     dropdownOptions2.length > 0 ? dropdownOptions2[0].value : 0,
@@ -35,7 +37,7 @@ const Generator: React.FC<GeneratorProps> = ({
       value2: useTextField ? textValue2 : dropdownValue2,
     }
 
-    navigate('/collage', { state: { options } })
+    navigate('/collage', { state: { options, imageFile } })
   }
 
   const toggleInputType = () => {

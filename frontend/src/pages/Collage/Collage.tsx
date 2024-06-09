@@ -11,8 +11,9 @@ interface DropdownOption {
 const Collage: React.FC = () => {
   const { theme } = useTheme()
   const location = useLocation()
-  const { options } = location.state as {
+  const { options, imageFile } = location.state as {
     options: { value1: DropdownOption; value2: DropdownOption }
+    imageFile: File
   }
 
   const [images, setImages] = useState<string[]>([])
@@ -20,16 +21,15 @@ const Collage: React.FC = () => {
 
   useEffect(() => {
     const sendRequest = async () => {
+      const formData = new FormData()
+      formData.append('file', imageFile)
+      formData.append('background', options.value1.value)
+      // formData.append('style', options.value2.value)
+
       try {
         const response = await fetch('http://localhost:8000/background-generation', {
           method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: new URLSearchParams({
-            background: options.value1.value,
-            // option2: options.value2.value,
-          }),
+          body: formData,
         })
 
         const result = await response.json()
@@ -42,7 +42,7 @@ const Collage: React.FC = () => {
     }
 
     sendRequest()
-  }, [options])
+  }, [options, imageFile])
 
   return (
     <div>

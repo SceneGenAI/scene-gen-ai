@@ -9,7 +9,7 @@ interface DropdownOption {
 }
 
 const Generate: React.FC = () => {
-  const [imageSrc, setImageSrc] = useState<string | null>(null)
+  const [imageFile, setImageFile] = useState<File | null>(null)
   const [dropdownOptions1, setDropdownOptions1] = useState<DropdownOption[]>([])
   const [responseReceived, setResponseReceived] = useState<boolean>(false)
 
@@ -21,7 +21,7 @@ const Generate: React.FC = () => {
 
   const handleImageUpload = async (files: FileList) => {
     const file = files[0]
-    setImageSrc(URL.createObjectURL(file))
+    setImageFile(file)
     setResponseReceived(false)
 
     const formData = new FormData()
@@ -49,8 +49,12 @@ const Generate: React.FC = () => {
   return (
     <div className="generate">
       <div className="generate-image-display-container">
-        {imageSrc && (
-          <img src={imageSrc} alt="Uploaded Preview" className="generate-image-preview" />
+        {imageFile && (
+          <img
+            src={URL.createObjectURL(imageFile)}
+            alt="Uploaded Preview"
+            className="generate-image-preview"
+          />
         )}
       </div>
       <div className="generate-button-container">
@@ -60,6 +64,7 @@ const Generate: React.FC = () => {
         dropdownOptions1={dropdownOptions1}
         dropdownOptions2={dropdownOptions2}
         responseReceived={responseReceived}
+        imageFile={imageFile}
       />
     </div>
   )

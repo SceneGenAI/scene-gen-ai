@@ -28,13 +28,14 @@ const Generate: React.FC = () => {
     formData.append('file', file)
 
     try {
-      const response = await fetch('http://127.0.0.1:8000/get-dropdown-options', {
+      const response = await fetch('http://localhost:8000/prompt-generation', {
         method: 'POST',
         body: formData,
       })
 
       if (response.ok) {
         const data = await response.json()
+        console.log(data)
         setDropdownOptions1(data)
         setResponseReceived(true)
       } else {

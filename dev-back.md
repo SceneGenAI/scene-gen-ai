@@ -13,7 +13,7 @@ pip install -qq -U diffusers datasets transformers accelerate ftfy pyarrow==9.0.
 ```
 
 
-### to run locally
+### to run locally                                                                                              
 one window
 ```
 cd backend

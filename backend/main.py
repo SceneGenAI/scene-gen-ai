@@ -3,6 +3,7 @@ import logging
 
 from fastapi import FastAPI, File
 from starlette.responses import Response, JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from background_generation import get_generator, get_generated_picture
 from object_captioning import ObjectCaptioning
@@ -20,19 +21,48 @@ app = FastAPI(title="Image Generation with Diffusion Model",
               version="0.1.0")
 
 
+# Enable CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Add the origin of your frontend application
+    allow_credentials=True,
+    allow_methods=["POST"],
+    allow_headers=["*"],
+)
+
+
+# @app.post("/prompt-generation")
+# def prompt_generation(file: bytes = File(...)):
+#     try:
+#         caption = oc.generate_caption(file)
+#         logging.info("Caption generated successfully.")
+#         # return Response(content=caption, media_type="text/plain")
+#     except Exception as e:
+#         logging.error(f"Error generating caption: {e}")
+#         return Response(content=f"Error generating caption: {e}", media_type="text/plain")
+#     try:
+#         prompt = pg.generate_prompt(caption)
+#         logging.info("Prompt generated successfully.")
+#         return JSONResponse(content={"prompts": prompt.split('\n')})
+#     except Exception as e:
+#         logging.error(f"Error generating prompt: {e}")
+#         return JSONResponse(content={"error": f"Error generating prompt: {e}"}, status_code=500)
+
+
 @app.post("/prompt-generation")
 def prompt_generation(file: bytes = File(...)):
     try:
         caption = oc.generate_caption(file)
         logging.info("Caption generated successfully.")
-        # return Response(content=caption, media_type="text/plain")
     except Exception as e:
         logging.error(f"Error generating caption: {e}")
-        return Response(content=f"Error generating caption: {e}", media_type="text/plain")
+        return JSONResponse(content={"error": f"Error generating caption: {e}"}, status_code=500)
+
     try:
         prompt = pg.generate_prompt(caption)
         logging.info("Prompt generated successfully.")
-        return JSONResponse(content={"prompts": prompt.split('\n')})
+        prompts = [{"value": idx, "label": prompt_line} for idx, prompt_line in enumerate(prompt.split('\n'))]
+        return JSONResponse(content=prompts)
     except Exception as e:
         logging.error(f"Error generating prompt: {e}")
         return JSONResponse(content={"error": f"Error generating prompt: {e}"}, status_code=500)

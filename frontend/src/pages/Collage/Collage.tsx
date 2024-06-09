@@ -21,14 +21,14 @@ const Collage: React.FC = () => {
   useEffect(() => {
     const sendRequest = async () => {
       try {
-        const response = await fetch('http://localhost:8000/get-images', {
+        const response = await fetch('http://localhost:8000/background-generation', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
           },
           body: new URLSearchParams({
-            option1: options.value1.value,
-            option2: options.value2.value,
+            background: options.value1.value,
+            // option2: options.value2.value,
           }),
         })
 

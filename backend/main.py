@@ -20,26 +20,17 @@ app = FastAPI(title="Image Generation with Diffusion Model",
               version="0.1.0")
 
 
-@app.post("/object-captioning")
-def generate_caption(file: bytes = File(...)):
+@app.post("/prompt-generation")
+def prompt_generation(file: bytes = File(...)):
     try:
         caption = oc.generate_caption(file)
         logging.info("Caption generated successfully.")
-        return Response(content=caption, media_type="text/plain")
+        # return Response(content=caption, media_type="text/plain")
     except Exception as e:
         logging.error(f"Error generating caption: {e}")
         return Response(content=f"Error generating caption: {e}", media_type="text/plain")
-
-
-@app.post("/prompt-generation")
-def generate_prompts(object_text: str):
-    """
-    Generate 3 prompts for the given object text description.
-    :param object_text:
-    :return:
-    """
     try:
-        prompt = pg.generate_prompt(object_text)
+        prompt = pg.generate_prompt(caption)
         logging.info("Prompt generated successfully.")
         return JSONResponse(content={"prompts": prompt.split('\n')})
     except Exception as e:
@@ -48,7 +39,7 @@ def generate_prompts(object_text: str):
 
 
 @app.post("/background-generation")
-def generate_image(file: bytes = File(...), prompt: str = ""):
+def background_generation(file: bytes = File(...), prompt: str = ""):
     try:
         if not prompt:
             prompt = 'An object in the living room with grey-blue walls'

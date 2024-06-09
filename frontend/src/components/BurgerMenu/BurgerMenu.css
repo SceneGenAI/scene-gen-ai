@@ -1,0 +1,118 @@
+.burger-menu {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .burger-menu {
+        position: relative;
+        display: block;
+        z-index: 1002;
+    }
+
+    .burger-icon {
+        width: 2rem;
+        height: 1.5rem;
+        position: fixed;
+        right: 1rem;
+        top: 1rem;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        z-index: 1001;
+    }
+
+    .burger-icon .burger-line {
+        width: 100%;
+        height: 4px;
+        border-radius: 10px;
+        background-color: var(--secondary-color);
+        transition: all 0.3s ease;
+    }
+
+    .burger-icon.open .burger-line:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+
+    .burger-icon.open .burger-line:nth-child(2) {
+        opacity: 0;
+    }
+
+    .burger-icon.open .burger-line:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    .burger-content-menu {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: var(--bg-color);
+        transform: translateY(-110%);
+        transition: transform 0.3s ease;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .burger-content-menu.open {
+        transform: translateY(0);
+    }
+
+    .burger-content {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-evenly;
+        height: 100%;
+        padding: auto 0;
+    }
+
+    .burger-top-container {
+        flex: 50%;
+    }
+
+    .burger-container {
+        width: 40%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .burger-container-line {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 3rem;
+        width: 100%;
+    }
+
+    .burger-sign-in-button {
+        cursor: pointer;
+        height: 3rem;
+        background-color: var(--secondary-color);
+        border-radius: 5px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .burger-sign-in-button p {
+        color: var(--bg-color);
+    }
+
+    .burger-sign-up-button:hover {
+        background-color: var(--secondary-blur-color);
+    }
+
+    .burger-theme {
+        cursor: pointer;
+    }
+
+    .burger-theme-icon {
+        height: var(--fontsize-large);
+        padding: 0;
+    }
+}

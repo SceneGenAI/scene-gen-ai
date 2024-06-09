@@ -1,0 +1,139 @@
+.header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    max-width: 1280px;
+    height: 64px;
+    padding: 0 5%;
+    margin: 0 auto;
+    color: var(--text-color);
+    font-size: var(--fontsize-medium1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+    background-color: var(--bg-color);
+}
+
+.header-nav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-section {
+    display: flex;
+    align-items: center;
+}
+
+.header-left {
+    width: 35%;
+}
+
+.header-center {
+    width: 7%;
+    display: flex;
+    justify-content: center;
+}
+
+.header-right {
+    width: 35%;
+}
+
+.header-right .header-item {
+    width: 50%;
+}
+
+.header-item {
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.language-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: inherit;
+    color: inherit;
+}
+
+.theme-icon {
+    cursor: pointer;
+    width: 1.3rem;
+    height: 1.3rem;
+    padding-left: 1rem;
+}
+
+.sign-up-button {
+    background-color: var(--secondary-color);
+    border-radius: 5px;
+    height: 3rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    justify-content: space-around;
+}
+
+.sign-up-button p {
+    color: var(--bg-color);
+}
+
+.sign-up-button:hover {
+    background-color: var(--secondary-blur-color);
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: var(--text-color);
+}
+
+a:visited {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.underlined {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.underlined:hover {
+    border-bottom: 2px solid var(--text-color);
+}
+
+@media only screen and (max-width: 1280px) {
+    .header {
+        padding: 0 5%;
+        font-size: var(--fontsize-medium1);
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        display: block;
+        padding: 0;
+        height: 3.5rem;
+    }
+    .header-section {
+        display: none;
+        align-items: center;
+    }
+    .header-nav {
+        justify-content: space-around;
+        height: 100%;
+    }
+    .header-nav .header-left {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+}

@@ -1,0 +1,99 @@
+.dropdown-container {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-label {
+    position: absolute;
+    left: 1rem;
+    top: -0.3rem;
+    background-color: var(--secondary-bg-color);
+    font-size: var(--fontsize-small);
+    color: var(--secondary-text-color);
+}
+
+.dropdown-select {
+    font-size: var(--fontsize-medium1);
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    appearance: none;
+    background-color: var(--bg-color);
+    background: url('./../icons/DropdownArrow.svg') no-repeat right 10px center;
+    background-color: var(--bg-color);
+    background-size: var(--fontsize-medium1);
+}
+
+.dropdown-select:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}
+
+.dropdown-header {
+    font-size: var(--fontsize-medium1);
+    background-color: var(--bg-color);
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+}
+
+.dropdown-header.open {
+    border: 1px solid var(--secondary-color);
+}
+
+.dropdown-header-text {
+    font-size: var(--fontsize-medium1);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+    text-align: left;
+}
+
+.dropdown-arrow {
+    height: var(--fontsize-medium1);
+    transition: all 0.2s ease;
+}
+
+.dropdown-arrow.open {
+    transform: rotate(-180deg);
+}
+
+.dropdown-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: var(--bg-color);
+    z-index: 1000;
+    max-height: 200%;
+    overflow-y: auto;
+}
+
+.dropdown-option {
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: var(--fontsize-medium1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-option:hover {
+    background: var(--third-bg-color);
+}
+
+.dropdown-option-scrollable {
+    overflow-x: auto;
+    white-space: nowrap;
+}

@@ -1,5 +1,5 @@
 import './Collage.css'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useTheme, Theme } from '../../contexts/ThemeProvider'
 
@@ -18,30 +18,40 @@ const Collage: React.FC = () => {
 
   const [images, setImages] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
+  const requestSent = useRef(false)
 
   useEffect(() => {
-    const sendRequest = async () => {
-      const formData = new FormData()
-      formData.append('file', imageFile)
-      formData.append('background', options.value1.value)
-      // formData.append('style', options.value2.value)
+    console.log(1);
 
-      try {
-        const response = await fetch('http://localhost:8000/background-generation', {
-          method: 'POST',
-          body: formData,
-        })
+    if (!requestSent.current) {
+      console.log(2);
 
-        const result = await response.json()
-        setImages(result.images)
-      } catch (error) {
-        console.error('Error:', error)
-      } finally {
-        setLoading(false)
+      requestSent.current = true
+
+      const sendRequest = async () => {
+        const formData = new FormData()
+        formData.append('file', imageFile)
+        formData.append('background', options.value1.value)
+        // formData.append('style', options.value2.value)
+
+        try {
+          const response = await fetch('http://localhost:8000/background-generation', {
+            method: 'POST',
+            body: formData,
+          })
+
+          const result = await response.json()
+          setImages([result.image])
+        } catch (error) {
+          console.error('Error:', error)
+        } finally {
+          setLoading(false)
+        }
       }
-    }
 
-    sendRequest()
+      sendRequest()
+      sendRequest()
+    }
   }, [options, imageFile])
 
   return (
@@ -54,11 +64,11 @@ const Collage: React.FC = () => {
             {images.map((image, index) => (
               <div className="collage-image-preview-container" key={index}>
                 <a
-                  href={`data:image/png;base64,${btoa(image)}`}
+                  href={`data:image/png;base64,${image}`}
                   download={`collage_${index + 1}.png`}
                 >
                   <img
-                    src={`data:image/png;base64,${btoa(image)}`}
+                    src={`data:image/png;base64,${image}`}
                     alt={`Collage ${index + 1}`}
                     className="collage-image-preview"
                   />

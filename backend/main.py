@@ -1,5 +1,7 @@
 import io
 import logging
+import base64
+
 
 from fastapi import FastAPI, File
 from fastapi.middleware.cors import CORSMiddleware
@@ -59,8 +61,10 @@ def background_generation(file: bytes = File(...), prompt: str = ""):
         generated_image = background_generator.get_generated_picture(file, prompt)
         bytes_io = io.BytesIO()
         generated_image.save(bytes_io, format='PNG')
+        bytes_io.seek(0)  # Reset the pointer to the beginning of the BytesIO object
+        base64_image = base64.b64encode(bytes_io.read()).decode('utf-8')
         logging.info("Image generated successfully.")
-        return Response(bytes_io.getvalue(), media_type="image/png")
+        return JSONResponse(content={"image": base64_image})
     except Exception as e:
         logging.error(f"Error processing image: {e}")
         return JSONResponse(content={"error": f"Error processing image: {e}"}, status_code=500)

@@ -2,8 +2,8 @@ import io
 import logging
 
 from fastapi import FastAPI, File
-from starlette.responses import Response, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.responses import Response, JSONResponse
 
 from background_generator import BackgroundGenerator
 from object_captioner import ObjectCaptioner
@@ -12,14 +12,13 @@ from prompt_generator import PromptGenerator
 logging.basicConfig(level=logging.INFO)
 
 # Load the diffusion model pipeline and prompt generator
-oc = ObjectCaptioner()
-pg = PromptGenerator()
-pipeline = BackgroundGenerator.get_generator()
+object_captioner = ObjectCaptioner()
+prompt_generator = PromptGenerator()
+background_generator = BackgroundGenerator()
 
 app = FastAPI(title="Image Generation with Diffusion Model",
               description='Generate images using a pretrained diffusion model.',
               version="0.1.0")
-
 
 # Enable CORS
 app.add_middleware(
@@ -31,35 +30,18 @@ app.add_middleware(
 )
 
 
-# @app.post("/prompt-generation")
-# def prompt_generation(file: bytes = File(...)):
-#     try:
-#         caption = oc.generate_caption(file)
-#         logging.info("Caption generated successfully.")
-#         # return Response(content=caption, media_type="text/plain")
-#     except Exception as e:
-#         logging.error(f"Error generating caption: {e}")
-#         return Response(content=f"Error generating caption: {e}", media_type="text/plain")
-#     try:
-#         prompt = pg.generate_prompt(caption)
-#         logging.info("Prompt generated successfully.")
-#         return JSONResponse(content={"prompts": prompt.split('\n')})
-#     except Exception as e:
-#         logging.error(f"Error generating prompt: {e}")
-#         return JSONResponse(content={"error": f"Error generating prompt: {e}"}, status_code=500)
-
-
 @app.post("/prompt-generation")
 def prompt_generation(file: bytes = File(...)):
     try:
-        caption = oc.generate_caption(file)
+        caption = object_captioner.generate_caption(file)
         logging.info("Caption generated successfully.")
+        logging.info(caption)
     except Exception as e:
         logging.error(f"Error generating caption: {e}")
         return JSONResponse(content={"error": f"Error generating caption: {e}"}, status_code=500)
 
     try:
-        prompt = pg.generate(caption)
+        prompt = prompt_generator.generate(caption)
         logging.info("Prompt generated successfully.")
         prompts = [{"value": idx, "label": prompt_line} for idx, prompt_line in enumerate(prompt.split('\n'))]
         return JSONResponse(content=prompts)
@@ -73,7 +55,8 @@ def background_generation(file: bytes = File(...), prompt: str = ""):
     try:
         if not prompt:
             prompt = 'An object in the living room with grey-blue walls'
-        generated_image = BackgroundGenerator.get_generated_picture(pipeline, file, prompt)
+        # generated_image = BackgroundGenerator.get_generated_picture(pipeline, file, prompt)
+        generated_image = background_generator.get_generated_picture(file, prompt)
         bytes_io = io.BytesIO()
         generated_image.save(bytes_io, format='PNG')
         logging.info("Image generated successfully.")
@@ -94,7 +77,7 @@ def generation_pipeline(file: bytes = File(...)):
     :return: image with background
     """
     try:
-        object_text = oc.generate_caption(file)
+        object_text = object_captioner.generate_caption(file)
         # english prompt
         print("-----------------")
         print(object_text)
@@ -103,7 +86,7 @@ def generation_pipeline(file: bytes = File(...)):
         return Response(content=f"Error generating caption: {e}", media_type="text/plain")
 
     try:
-        prompt = pg.generate(object_text)
+        prompt = prompt_generator.generate(object_text)
         # take the first prompt
         print("-----------------")
         print(prompt)
@@ -114,7 +97,7 @@ def generation_pipeline(file: bytes = File(...)):
         return Response(content=f"Error generating prompt: {e}", media_type="text/plain")
 
     try:
-        generated_image = BackgroundGenerator.get_generated_picture(pipeline, file, prompt)
+        generated_image = background_generator.get_generated_picture(file, prompt)
         bytes_io = io.BytesIO()
         generated_image.save(bytes_io, format='PNG')
         logging.info("Image generated successfully.")

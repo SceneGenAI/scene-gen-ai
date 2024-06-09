@@ -34,6 +34,17 @@ class BackgroundGenerator:
         print("Model loaded successfully.")
         return pipeline
 
+    @staticmethod
+    def expand_background(image, multiplier):
+        # TODO choose the placing
+        # get the size of the image
+        width, height = image.size
+        new_image = Image.new('RGB', (int(width * multiplier), int(height * multiplier)))
+        new_image.paste(image, (int((width * multiplier - width) / 2), int((height * multiplier - height) / 2)))
+        # paste the original image proportionally to the initial picture
+        # new_image.paste(image, )
+        return new_image
+
     def get_generated_picture(self, file, prompt: str):
         use_cuda = torch.cuda.is_available()
         device = torch.device("cuda" if use_cuda else "cpu")
@@ -66,17 +77,6 @@ class BackgroundGenerator:
                 num_inference_steps=20, guess_mode=False, controlnet_conditioning_scale=cond_scale
             ).images[0]
         return controlnet_image
-
-    @staticmethod
-    def expand_background(image, multiplier):
-        # TODO choose the placing
-        # get the size of the image
-        width, height = image.size
-        new_image = Image.new('RGB', (int(width * multiplier), int(height * multiplier)))
-        new_image.paste(image, (int((width * multiplier - width) / 2), int((height * multiplier - height) / 2)))
-        # paste the original image proportionally to the initial picture
-        # new_image.paste(image, )
-        return new_image
 
 
 if __name__ == '__main__':

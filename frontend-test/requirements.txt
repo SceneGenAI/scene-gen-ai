@@ -1,0 +1,4 @@
+streamlit
+requests_toolbelt
+requests
+pillow

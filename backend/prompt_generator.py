@@ -2,10 +2,6 @@ import os
 
 import requests
 
-service_account_id = os.environ.get('SERVICE_ACC_ID')
-key = os.environ.get('API_KEY')
-private_key = os.environ.get('API_SECRET')
-
 
 class PromptGenerator:
     """
@@ -14,9 +10,8 @@ class PromptGenerator:
     """
 
     def __init__(self):
-        self.service_account_id = os.environ.get('SERVICE_ACC_ID')
-        self.key = os.environ.get('API_KEY')
         self.private_key = os.environ.get('API_SECRET')
+        self.catalog_id = os.environ.get('CATALOG_ID')
 
         self.url = 'https://llm.api.cloud.yandex.net/foundationModels/v1/completion'
         self.data = self._data_init()
@@ -24,7 +19,7 @@ class PromptGenerator:
 
     def generate(self, object_text):
         self.data['messages'][1]['text'] = object_text
-        r = requests.post(self.url, headers={'Authorization': 'Api-Key ' + private_key}, json=self.data)
+        r = requests.post(self.url, headers={'Authorization': 'Api-Key ' + self.private_key}, json=self.data)
 
         if r.status_code == 200:
             r = r.json()
@@ -32,10 +27,10 @@ class PromptGenerator:
         else:
             return 'Error: ' + str(r.status_code)
 
-    @staticmethod
-    def _data_init():
+    # @staticmethod
+    def _data_init(self):
         data = {}
-        data['modelUri'] = 'gpt://b1ga68j4036qlm4nu1rh/yandexgpt/latest'
+        data['modelUri'] = f'gpt://{self.catalog_id}/yandexgpt/latest'
 
         # Additional parameters for the model
         data['completionOptions'] = {

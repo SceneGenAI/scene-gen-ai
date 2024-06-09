@@ -1,5 +1,5 @@
 import './Generate.css'
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import GeneratorForm from '../../components/GeneratorForm/GeneratorForm'
 import DropButton from '../../components/DropButton/DropButton'
 
@@ -12,6 +12,7 @@ const Generate: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null)
   const [dropdownOptions1, setDropdownOptions1] = useState<DropdownOption[]>([])
   const [responseReceived, setResponseReceived] = useState<boolean>(false)
+  const requestSent = useRef(false)
 
   const dropdownOptions2 = [
     { value: 0, label: 'Минимализм' },
@@ -20,29 +21,33 @@ const Generate: React.FC = () => {
   ]
 
   const handleImageUpload = async (files: FileList) => {
-    const file = files[0]
-    setImageFile(file)
-    setResponseReceived(false)
+    if (!requestSent.current) {
+      requestSent.current = true
 
-    const formData = new FormData()
-    formData.append('file', file)
+      const file = files[0]
+      setImageFile(file)
+      setResponseReceived(false)
 
-    try {
-      const response = await fetch('http://localhost:8000/prompt-generation', {
-        method: 'POST',
-        body: formData,
-      })
+      const formData = new FormData()
+      formData.append('file', file)
 
-      if (response.ok) {
-        const data = await response.json()
-        console.log(data)
-        setDropdownOptions1(data)
-        setResponseReceived(true)
-      } else {
-        console.error('Failed to fetch dropdown options')
+      try {
+        const response = await fetch('http://localhost:8000/prompt-generation', {
+          method: 'POST',
+          body: formData,
+        })
+
+        if (response.ok) {
+          const data = await response.json()
+          console.log(data)
+          setDropdownOptions1(data)
+          setResponseReceived(true)
+        } else {
+          console.error('Failed to fetch dropdown options')
+        }
+      } catch (error) {
+        console.error('Error fetching dropdown options:', error)
       }
-    } catch (error) {
-      console.error('Error fetching dropdown options:', error)
     }
   }
 

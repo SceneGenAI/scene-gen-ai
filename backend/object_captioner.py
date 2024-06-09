@@ -4,7 +4,7 @@ from PIL import Image
 from transformers import BlipProcessor, BlipForConditionalGeneration
 
 
-class ObjectCaptioning:
+class ObjectCaptioner:
     """
     Generating a caption for a given image.
     Based on Blip model.
@@ -28,9 +28,8 @@ class ObjectCaptioning:
 
 # Usage example
 if __name__ == '__main__':
-    oc = ObjectCaptioning()
+    oc = ObjectCaptioner()
 
-    # Load an image
     with open("data/bat.jpg", "rb") as f:
         file = f.read()
         caption = oc.generate_caption(file)

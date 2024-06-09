@@ -13,8 +13,8 @@ cd ..
 cd frontend-test
 pip install -r requirements.txt
 
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
-pip install -qq -U diffusers datasets transformers accelerate ftfy pyarrow==9.0.0
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121 --no-cache-dir
+pip install -qq -U diffusers datasets transformers accelerate ftfy pyarrow==9.0.0 --no-cache-dir
 ```
 
 

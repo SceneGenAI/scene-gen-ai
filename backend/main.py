@@ -4,16 +4,16 @@ import logging
 from fastapi import FastAPI, File
 from starlette.responses import Response, JSONResponse
 
-from background_generation import get_generator, get_generated_picture
-from object_captioning import ObjectCaptioning
-from prompt_generation import PromptGenerator
+from background_generator import BackgroundGenerator
+from object_captioner import ObjectCaptioner
+from prompt_generator import PromptGenerator
 
 logging.basicConfig(level=logging.INFO)
 
 # Load the diffusion model pipeline and prompt generator
-oc = ObjectCaptioning()
+oc = ObjectCaptioner()
 pg = PromptGenerator()
-pipeline = get_generator()
+pipeline = BackgroundGenerator.get_generator()
 
 app = FastAPI(title="Image Generation with Diffusion Model",
               description='Generate images using a pretrained diffusion model.',
@@ -30,7 +30,7 @@ def prompt_generation(file: bytes = File(...)):
         logging.error(f"Error generating caption: {e}")
         return Response(content=f"Error generating caption: {e}", media_type="text/plain")
     try:
-        prompt = pg.generate_prompt(caption)
+        prompt = pg.generate(caption)
         logging.info("Prompt generated successfully.")
         return JSONResponse(content={"prompts": prompt.split('\n')})
     except Exception as e:
@@ -43,7 +43,7 @@ def background_generation(file: bytes = File(...), prompt: str = ""):
     try:
         if not prompt:
             prompt = 'An object in the living room with grey-blue walls'
-        generated_image = get_generated_picture(pipeline, file, prompt)
+        generated_image = BackgroundGenerator.get_generated_picture(pipeline, file, prompt)
         bytes_io = io.BytesIO()
         generated_image.save(bytes_io, format='PNG')
         logging.info("Image generated successfully.")
@@ -73,7 +73,7 @@ def generation_pipeline(file: bytes = File(...)):
         return Response(content=f"Error generating caption: {e}", media_type="text/plain")
 
     try:
-        prompt = pg.generate_prompt(object_text)
+        prompt = pg.generate(object_text)
         # take the first prompt
         print("-----------------")
         print(prompt)
@@ -84,7 +84,7 @@ def generation_pipeline(file: bytes = File(...)):
         return Response(content=f"Error generating prompt: {e}", media_type="text/plain")
 
     try:
-        generated_image = get_generated_picture(pipeline, file, prompt)
+        generated_image = BackgroundGenerator.get_generated_picture(pipeline, file, prompt)
         bytes_io = io.BytesIO()
         generated_image.save(bytes_io, format='PNG')
         logging.info("Image generated successfully.")

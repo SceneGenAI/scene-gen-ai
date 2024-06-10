@@ -2,6 +2,10 @@ import os
 
 import requests
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 class PromptGenerator:
     """
@@ -10,8 +14,8 @@ class PromptGenerator:
     """
 
     def __init__(self):
-        self.private_key = os.environ.get('API_SECRET')
-        self.catalog_id = os.environ.get('CATALOG_ID')
+        self.private_key = os.getenv('API_SECRET')
+        self.catalog_id = os.getenv('CATALOG_ID')
 
         self.url = 'https://llm.api.cloud.yandex.net/foundationModels/v1/completion'
         self.data = self._data_init()
@@ -50,7 +54,7 @@ class PromptGenerator:
                 "text": "Нужно сгенерировать промпт формата \"Объект на фоне\" на английском языке. \
                 Всегда генерируй 3 варианта промпта, в ответе должны быть только пронумерованные промпты, без вступления. \
                 Пример: \"Батарея в гостинной с голубыми стенами.\" \
-                В запросе подается объект. Нужно дописать фон и предлог. Нужно выбирать релевантные фоны для объекта, чтобы картинка, \
+                В запросе подается объект и его категория. Нужно дописать фон и предлог. Нужно выбирать релевантные фоны для объекта, чтобы картинка, \
                 которая могла бы описываться подобным фоном, могла быть на маркетплейсе, продающем мебель. \
                 Еще примеры промпта: \
                 \"Садовые качели на дворике у загородного дома\", \
@@ -58,7 +62,7 @@ class PromptGenerator:
             },
             {
                 "role": "user",
-                "text": "Садовые качели"
+                "text": "Садовые качели, садовая мебель"
             }
 
         ]
@@ -68,6 +72,6 @@ class PromptGenerator:
 # Usage example
 if __name__ == '__main__':
     pg = PromptGenerator()
-    print(pg.generate('Садовые качели'))
-    print(pg.generate('Лампа'))
-    print(pg.generate('Стол'))
+    print(pg.generate('Садовые качели, садовая мебель'))
+    print(pg.generate('Лампа, освещение'))
+    print(pg.generate('Стол, садовая мебель'))

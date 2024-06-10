@@ -1,0 +1,1 @@
+building-other-merged,chair,orange,pavement-merged,potted plant,tree-merged,umbrella,wall-other-merged,water-other

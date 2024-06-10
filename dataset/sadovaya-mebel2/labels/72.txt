@@ -1,0 +1,1 @@
+chair,cup,dining table,grass-merged,house,pavement-merged,sky-other-merged,tree-merged,umbrella

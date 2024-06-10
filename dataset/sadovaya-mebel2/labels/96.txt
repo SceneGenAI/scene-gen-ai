@@ -1,0 +1,1 @@
+building-other-merged,mountain-merged,sky-other-merged,tree-merged,wall-other-merged

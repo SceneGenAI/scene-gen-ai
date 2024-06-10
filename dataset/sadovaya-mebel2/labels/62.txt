@@ -1,0 +1,1 @@
+chair,cup,grass-merged,potted plant,sky-other-merged,table-merged,tree-merged,umbrella,wall-wood

@@ -1,0 +1,1 @@
+chair,fence-merged,floor-wood,grass-merged,pavement-merged,potted plant,tree-merged,wall-brick,wall-other-merged,water-other

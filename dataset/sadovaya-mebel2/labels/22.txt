@@ -1,0 +1,1 @@
+chair,floor-wood,potted plant,rug-merged,window-other

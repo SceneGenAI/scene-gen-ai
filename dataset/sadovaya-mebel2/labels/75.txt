@@ -1,1 +1,0 @@
-tent,grass-merged,chair,bed

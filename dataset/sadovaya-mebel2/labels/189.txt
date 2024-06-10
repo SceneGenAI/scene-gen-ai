@@ -1,1 +1,0 @@
-couch,curtain,tree-merged,wall-other-merged,window-other

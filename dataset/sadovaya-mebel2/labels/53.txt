@@ -1,1 +1,0 @@
-bowl,tree-merged,chair,pavement-merged,table-merged

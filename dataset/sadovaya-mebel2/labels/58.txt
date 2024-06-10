@@ -1,1 +1,0 @@
-water-other,wall-brick,grass-merged,tree-merged,chair,potted plant,floor-wood,potted plant,chair,fence-merged,pavement-merged,potted plant,potted plant,wall-other-merged,dining table

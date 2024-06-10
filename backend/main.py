@@ -1,8 +1,6 @@
 import base64
 import io
 import logging
-import os
-import random
 
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
@@ -105,8 +103,8 @@ async def get_dropdown_options_endpoint(file: UploadFile = File(...)):
     return dropdown_options
 
 
-@app.post("/background-generation")
-async def background_generation(file: bytes = File(...), prompt: str = ""):
+# @app.post("/background-generation")
+def background_generation(file: bytes = File(...), prompt: str = ""):
     print(f"Prompt: {prompt}")
     try:
         if not prompt:
@@ -122,6 +120,14 @@ async def background_generation(file: bytes = File(...), prompt: str = ""):
     except Exception as e:
         logging.error(f"Error processing image: {e}")
         return JSONResponse(content={"error": f"Error processing image: {e}"}, status_code=500)
+
+
+@app.post("/background-generation")
+async def get_images_endpoint(file: UploadFile = File(...), prompt: str = ""):
+    contents = await file.read()
+    image = background_generation(contents, prompt)
+    # sleep(5)
+    return image
 
 
 if __name__ == "__main__":

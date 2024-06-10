@@ -1,0 +1,1 @@
+ceiling-merged,couch,curtain,light,rug-merged,wall-other-merged,window-other

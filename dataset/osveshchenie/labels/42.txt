@@ -1,0 +1,1 @@
+cup,floor-other-merged,light,tv,wall-other-merged

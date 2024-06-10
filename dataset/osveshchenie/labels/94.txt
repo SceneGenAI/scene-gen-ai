@@ -1,0 +1,1 @@
+bowl,cabinet-merged,ceiling-merged,door-stuff,floor-wood,handbag,light,pillow,potted plant,vase,wall-other-merged,window-blind,window-other

@@ -1,0 +1,1 @@
+bottle,ceiling-merged,couch,cup,curtain,dining table,light,rug-merged,table-merged,wall-other-merged

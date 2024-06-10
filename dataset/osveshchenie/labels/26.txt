@@ -1,0 +1,1 @@
+bottle,dirt-merged,tree-merged,wall-stone

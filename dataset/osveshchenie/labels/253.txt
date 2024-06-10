@@ -1,0 +1,1 @@
+ceiling-merged,floor-wood,wall-other-merged

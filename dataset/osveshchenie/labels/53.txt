@@ -1,0 +1,1 @@
+book,clock,light,potted plant,table-merged,vase,wall-other-merged

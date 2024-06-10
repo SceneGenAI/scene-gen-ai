@@ -1,0 +1,1 @@
+book,bowl,ceiling-merged,chair,couch,dining table,door-stuff,floor-other-merged,light,potted plant,shelf,sky-other-merged,table-merged,tree-merged,vase,wall-other-merged

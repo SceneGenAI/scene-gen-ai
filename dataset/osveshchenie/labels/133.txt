@@ -1,0 +1,1 @@
+cabinet-merged,ceiling-merged,couch,door-stuff,floor-other-merged,light,oven,sink,wall-other-merged

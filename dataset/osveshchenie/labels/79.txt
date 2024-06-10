@@ -1,0 +1,1 @@
+bottle,ceiling-merged,couch,curtain,dining table,floor-other-merged,table-merged,wall-other-merged

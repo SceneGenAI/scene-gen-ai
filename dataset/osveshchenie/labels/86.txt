@@ -1,0 +1,1 @@
+book,ceiling-merged,couch,door-stuff,floor-wood,light,person,rug-merged,table-merged,wall-other-merged,window-blind

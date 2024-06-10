@@ -1,0 +1,1 @@
+cabinet-merged,ceiling-merged,chair,curtain,dining table,light,potted plant,refrigerator,vase,wall-other-merged,window-other

@@ -1,0 +1,1 @@
+couch,cup,floor-other-merged,light,table-merged,wall-other-merged,wine glass

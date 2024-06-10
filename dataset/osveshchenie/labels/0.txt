@@ -1,0 +1,1 @@
+chair,cup,curtain,dining table,floor-other-merged,light,potted plant,table-merged,wall-other-merged,window-other

@@ -1,0 +1,1 @@
+bottle,chair,cup,dining table,fork,knife,table-merged,wall-other-merged

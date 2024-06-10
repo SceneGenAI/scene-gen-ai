@@ -1,0 +1,1 @@
+bowl,ceiling-merged,couch,floor-wood,light,potted plant,table-merged,tv,vase,wall-other-merged

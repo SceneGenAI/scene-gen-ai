@@ -1,0 +1,1 @@
+chair,grass-merged,rock-merged,tree-merged

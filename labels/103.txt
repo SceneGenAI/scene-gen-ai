@@ -1,1 +1,0 @@
-door-stuff,tree-merged,window-other,floor-wood,wall-other-merged

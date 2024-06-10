@@ -1,1 +1,0 @@
-couch,flower,sky-other-merged,grass-merged,tree-merged,chair,orange,house,orange,floor-other-merged,potted plant,potted plant,orange,table-merged,wall-other-merged,cup

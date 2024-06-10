@@ -1,0 +1,1 @@
+building-other-merged,cabinet-merged,chair,couch,dining table,floor-other-merged,potted plant,shelf,sky-other-merged,spoon,table-merged,tree-merged,vase,window-other,wine glass

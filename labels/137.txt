@@ -1,1 +1,0 @@
-wall-wood,window-other,potted plant,cup,potted plant,table-merged,wall-other-merged

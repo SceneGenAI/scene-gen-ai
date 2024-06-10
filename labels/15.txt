@@ -1,1 +1,0 @@
-door-stuff,bench,sky-other-merged,grass-merged,tree-merged,dining table,chair,floor-wood,chair,person,fence-merged,pavement-merged,house,chair,table-merged

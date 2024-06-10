@@ -1,0 +1,1 @@
+chair,floor-other-merged,grass-merged,house,mountain-merged,pavement-merged,sea,sky-other-merged,tree-merged

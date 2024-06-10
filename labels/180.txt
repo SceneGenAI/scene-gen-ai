@@ -1,1 +1,0 @@
-couch,wall-wood,grass-merged,tree-merged,cup,house,bench,table-merged,wall-other-merged,roof

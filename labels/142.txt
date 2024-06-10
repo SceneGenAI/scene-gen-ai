@@ -1,1 +1,0 @@
-couch,potted plant,sky-other-merged,book,tree-merged,potted plant,cup,stairs,chair,potted plant,potted plant,potted plant,cup,potted plant,potted plant,chair,potted plant,umbrella,book,cup,book,floor-other-merged,potted plant,potted plant,potted plant,table-merged,chair,wall-other-merged,light

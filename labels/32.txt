@@ -1,0 +1,1 @@
+bowl,flower,chair,potted plant,sky-other-merged,wall-wood,tree-merged,chair,potted plant,wine glass,chair,chair,umbrella,potted plant,bowl,potted plant,floor-other-merged,potted plant,potted plant,potted plant,wall-other-merged,window-other,dining table

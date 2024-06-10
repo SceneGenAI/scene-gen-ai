@@ -1,0 +1,1 @@
+sky-other-merged,grass-merged,tree-merged,floor-wood,wall-other-merged,building-other-merged,light

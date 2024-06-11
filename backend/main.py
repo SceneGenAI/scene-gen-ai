@@ -3,7 +3,6 @@ import io
 import logging
 
 from fastapi import FastAPI, UploadFile, File, Form
-
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from starlette.responses import Response
@@ -74,8 +73,6 @@ def generation_pipeline(file: bytes = File(...)):
         return Response(content=f"Error processing image: {e}", media_type="text/plain")
 
 
-# Dummy function to determine dropdown options based on the uploaded image
-
 def prompt_generation(file: bytes = File(...)):
     try:
         caption = object_captioner.generate_caption(file)
@@ -123,10 +120,14 @@ def background_generation(file: bytes, prompt: str):
 
 
 @app.post("/background-generation")
-async def get_images_endpoint(file: bytes = File(...), prompt: str = ""):
-    # contents = await file.read()
-    print(f"Received prompt: {prompt}")  # Add logging to debug
-    image = background_generation(file, prompt)
+async def get_images_endpoint(file: UploadFile = File(...), background: str = Form(...), style: str = Form(...)):
+    contents = await file.read()
+    image = background_generation(contents, background)
+    if (background == ""):
+        print("empty string")
+        print(style)
+    else:
+        print(background)
     return image
 
 

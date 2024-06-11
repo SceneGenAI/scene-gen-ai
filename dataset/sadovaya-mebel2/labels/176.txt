@@ -1,0 +1,1 @@
+ceiling-merged,chair,cup,fence-merged,floor-other-merged,floor-wood,grass-merged,light,potted plant,sky-other-merged,tree-merged,umbrella,wall-other-merged,window-other

@@ -1,0 +1,1 @@
+building-other-merged,chair,dining table,flower,grass-merged,pavement-merged,sky-other-merged,tree-merged

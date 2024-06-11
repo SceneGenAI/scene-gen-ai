@@ -1,0 +1,1 @@
+bench,chair,fence-merged,floor-other-merged,light,pavement-merged,tree-merged,wall-other-merged,wall-stone,wall-wood,water-other

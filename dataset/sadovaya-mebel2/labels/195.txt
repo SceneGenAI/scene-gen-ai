@@ -1,0 +1,1 @@
+chair,fence-merged,grass-merged,house,sky-other-merged,tree-merged,wall-other-merged,window-other

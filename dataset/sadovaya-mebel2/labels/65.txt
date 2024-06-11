@@ -1,0 +1,1 @@
+chair,couch,dining table,floor-wood,orange,potted plant,rug-merged,vase,wall-other-merged,window-other

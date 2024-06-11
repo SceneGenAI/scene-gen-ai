@@ -1,0 +1,1 @@
+apple,bowl,chair,couch,cup,curtain,dining table,floor-wood,grass-merged,light,potted plant,vase,wall-wood,window-other

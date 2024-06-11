@@ -1,0 +1,1 @@
+bottle,chair,floor-other-merged,potted plant,sky-other-merged,towel,tree-merged,wall-other-merged

@@ -1,0 +1,1 @@
+bowl,chair,couch,cup,curtain,floor-wood,handbag,light,potted plant,table-merged,wall-wood

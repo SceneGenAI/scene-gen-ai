@@ -1,0 +1,1 @@
+bottle,bowl,chair,cup,dining table,donut,grass-merged,table-merged

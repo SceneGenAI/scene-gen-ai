@@ -1,0 +1,1 @@
+bowl,chair,dining table,fence-merged,floor-wood,flower,grass-merged,house,knife,potted plant,sky-other-merged,tree-merged,vase,wall-wood,wine glass

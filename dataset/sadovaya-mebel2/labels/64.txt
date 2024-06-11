@@ -1,0 +1,1 @@
+apple,chair,cup,dining table,fence-merged,floor-other-merged,potted plant,roof,rug-merged,sky-other-merged,spoon,tree-merged,vase,wall-other-merged

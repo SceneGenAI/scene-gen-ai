@@ -1,0 +1,1 @@
+bed,bench,cup,potted plant,rug-merged,table-merged,tree-merged,wall-other-merged,wall-wood,window-other

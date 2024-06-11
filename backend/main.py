@@ -2,7 +2,8 @@ import base64
 import io
 import logging
 
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, Form
+
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from starlette.responses import Response
@@ -103,13 +104,12 @@ async def get_dropdown_options_endpoint(file: UploadFile = File(...)):
     return dropdown_options
 
 
-# @app.post("/background-generation")
-def background_generation(file: bytes = File(...), prompt: str = ""):
+def background_generation(file: bytes, prompt: str):
     print(f"Prompt: {prompt}")
     try:
         if not prompt:
             prompt = 'An object in the living room with grey-blue walls'
-        # generated_image = BackgroundGenerator.get_generated_picture(pipeline, file, prompt)
+        # Assume background_generator.get_generated_picture is a valid function
         generated_image = background_generator.get_generated_picture(file, prompt)
         bytes_io = io.BytesIO()
         generated_image.save(bytes_io, format='PNG')
@@ -123,10 +123,10 @@ def background_generation(file: bytes = File(...), prompt: str = ""):
 
 
 @app.post("/background-generation")
-async def get_images_endpoint(file: UploadFile = File(...), prompt: str = ""):
-    contents = await file.read()
-    image = background_generation(contents, prompt)
-    # sleep(5)
+async def get_images_endpoint(file: bytes = File(...), prompt: str = ""):
+    # contents = await file.read()
+    print(f"Received prompt: {prompt}")  # Add logging to debug
+    image = background_generation(file, prompt)
     return image
 
 

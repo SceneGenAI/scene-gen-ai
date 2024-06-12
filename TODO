@@ -1,0 +1,2 @@
+1. Use GPU in docker images for torch
+2. Add our model to the api endpoint

@@ -1,0 +1,99 @@
+.generator-form-container {
+    width: 94%;
+    height: 30%;
+    background-color: var(--secondary-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px 10px 0 0;
+    padding: 4% 3% 1% 3%;
+}
+
+.generator-form-container.no-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.generator-form-content {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.generator-form-message {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.generator-form-input-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.generator-form-input-field {
+    width: 48%;
+}
+
+.generator-form-generate-button {
+    padding: 1rem 2rem;
+    font-size: var(--fontsize-medium1);
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 10px var(--border-color);
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.generator-form-generate-button:hover {
+    background-color: var(--secondary-blur-color);
+}
+
+.generator-form-generate-button[disabled] {
+    opacity: 0.6;
+}
+
+.generator-form-generate-button:hover[disabled] {
+    background-color: var(--secondary-color);
+    cursor: not-allowed;
+}
+
+.generator-form-toggle-button {
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    cursor: pointer;
+    font-size: var(--fontsize-small);
+    text-decoration: underline;
+}
+
+.generator-form-toggle-button:hover {
+    color: var(--secondary-text-color);
+}
+
+.generator-form-toggle-button[disabled] {
+    color: var(--secondary-text-color);
+}
+
+.generator-form-toggle-button:hover[disabled] {
+    cursor: not-allowed;
+}
+
+@media only screen and (max-width: 480px) {
+    .generator-form-container {
+        width: 80%;
+        padding: 5%;
+        justify-content: space-evenly;
+        border-radius: 10px;
+    }
+
+    .generator-form-input-field {
+        width: 45%;
+    }
+}

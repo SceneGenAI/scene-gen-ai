@@ -1,1 +1,9 @@
-
+fastapi
+starlette
+Pillow
+diffusers~=0.28.0
+transparent-background
+streamlit
+requests-toolbelt
+requests
+pillow

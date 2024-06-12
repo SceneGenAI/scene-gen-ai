@@ -1,0 +1,40 @@
+@keyframes ringMotion {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.ring-spinner-wrapper {
+    display: inline-block;
+    position: relative;
+    width: 64px;
+    height: 64px;
+}
+
+.ring-spinner {
+    height: 50px;
+    width: 50px;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    margin: 6px;
+    border: 6px solid;
+    border-radius: 50%;
+    border-color: var(--secondary-color) transparent transparent transparent;
+    animation: ringMotion 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+}
+
+.ring-spinner:nth-child(1) {
+    animation-delay: -0.45s;
+}
+
+.ring-spinner:nth-child(2) {
+    animation-delay: -0.3s;
+}
+
+.ring-spinner:nth-child(3) {
+    animation-delay: -0.15s;
+}

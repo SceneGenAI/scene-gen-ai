@@ -1,0 +1,30 @@
+.textfield-container {
+    width: 100%;
+    position: relative;
+    display: inline-block;
+}
+
+.textfield-label {
+    position: absolute;
+    left: 1rem;
+    top: -0.3rem;
+    background-color: var(--secondary-bg-color);
+    font-size: var(--fontsize-small);
+    color: var(--secondary-text-color);
+}
+
+.textfield-input {
+    font-size: var(--fontsize-medium1);
+    color: var(--text-color);
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: var(--bg-color);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.textfield-input:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+}

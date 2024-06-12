@@ -1,27 +1,45 @@
-.generator-container {
-    width: 50%;
+.generator-form-container {
+    width: 94%;
     height: 30%;
     background-color: var(--secondary-bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 10px 10px 0 0;
+    padding: 4% 3% 1% 3%;
+}
+
+.generator-form-container.no-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.generator-form-content {
+    height: 100%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    box-shadow: 0 0 30px var(--secondary-text-color);
-    border-radius: 10px 10px 0 0;
-    padding: 3% 3% 1% 3%;
 }
 
-.generator-input-container {
+.generator-form-message {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.generator-form-input-container {
     width: 100%;
     display: flex;
     justify-content: space-between;
 }
 
-.generator-input-field {
-    width: 40%;
+.generator-form-input-field {
+    width: 48%;
 }
 
-.generator-generate-button {
+.generator-form-generate-button {
     padding: 1rem 2rem;
     font-size: var(--fontsize-medium1);
     background-color: var(--secondary-color);
@@ -33,20 +51,20 @@
     transition: background 0.3s;
 }
 
-.generator-generate-button:hover {
+.generator-form-generate-button:hover {
     background-color: var(--secondary-blur-color);
 }
 
-.generator-generate-button[disabled] {
+.generator-form-generate-button[disabled] {
     opacity: 0.6;
 }
 
-.generator-generate-button:hover[disabled] {
+.generator-form-generate-button:hover[disabled] {
     background-color: var(--secondary-color);
     cursor: not-allowed;
 }
 
-.generator-toggle-button {
+.generator-form-toggle-button {
     background: none;
     border: none;
     color: var(--secondary-color);
@@ -55,26 +73,27 @@
     text-decoration: underline;
 }
 
-.generator-toggle-button:hover {
+.generator-form-toggle-button:hover {
     color: var(--secondary-text-color);
 }
 
-.generator-toggle-button[disabled] {
+.generator-form-toggle-button[disabled] {
     color: var(--secondary-text-color);
 }
 
-.generator-toggle-button:hover[disabled] {
+.generator-form-toggle-button:hover[disabled] {
     cursor: not-allowed;
 }
 
 @media only screen and (max-width: 480px) {
-    .generator-container {
+    .generator-form-container {
         width: 80%;
         padding: 5%;
         justify-content: space-evenly;
+        border-radius: 10px;
     }
 
-    .generator-input-field {
+    .generator-form-input-field {
         width: 45%;
     }
 }

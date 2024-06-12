@@ -1,7 +1,7 @@
 import './Generate.css'
-import React, { useState, useRef } from 'react'
-import GeneratorForm from '../../components/GeneratorForm/GeneratorForm'
-import DropButton from '../../components/DropButton/DropButton'
+import React, { useState } from 'react'
+import Gallery from '../../components/Gallery/Gallery'
+import Generator from '../../components/Generator/Generator'
 
 interface DropdownOption {
   value: number
@@ -10,67 +10,89 @@ interface DropdownOption {
 
 const Generate: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null)
-  const [dropdownOptions1, setDropdownOptions1] = useState<DropdownOption[]>([])
-  const [responseReceived, setResponseReceived] = useState<boolean>(false)
-  const requestSent = useRef(false)
+  const [backgroundOptions, setBackgroundOptions] = useState<DropdownOption[]>([])
+  const [responsePropsReceived, setResponsePropsReceived] = useState<boolean>(false)
+  const [images, setImages] = useState<string[]>([])
+  const [loading, setLoading] = useState(true)
 
-  const dropdownOptions2 = [
-    { value: 0, label: 'Минимализм' },
-    { value: 1, label: 'Современный' },
-    { value: 2, label: 'Классический' },
+  const styleOptions = [
+    { value: 0, label: 'Minimalism' },
+    { value: 1, label: 'Modern' },
+    { value: 2, label: 'Classic' },
   ]
 
-  const handleImageUpload = async (files: FileList) => {
-    if (!requestSent.current) {
-      requestSent.current = true
+  const getProps = async (files: FileList) => {
+    const file = files[0]
+    setImageFile(files[0])
+    setResponsePropsReceived(false)
+    const formData = new FormData()
+    formData.append('file', file)
 
-      const file = files[0]
-      setImageFile(file)
-      setResponseReceived(false)
+    try {
+      const response = await fetch('http://localhost:8000/prompt-generation', {
+        method: 'POST',
+        body: formData,
+      })
 
-      const formData = new FormData()
-      formData.append('file', file)
-
-      try {
-        const response = await fetch('http://localhost:8000/prompt-generation', {
-          method: 'POST',
-          body: formData,
-        })
-
-        if (response.ok) {
-          const data = await response.json()
-          console.log(data)
-          setDropdownOptions1(data)
-          setResponseReceived(true)
-        } else {
-          console.error('Failed to fetch dropdown options')
-        }
-      } catch (error) {
-        console.error('Error fetching dropdown options:', error)
+      if (response.ok) {
+        const data = await response.json()
+        setBackgroundOptions(data)
+        setResponsePropsReceived(true)
+      } else {
+        console.error('Failed to fetch dropdown options')
       }
+    } catch (error) {
+      console.error('Error fetching dropdown options:', error)
     }
   }
 
+  const getImages = async (background: string, style: string) => {
+    const sendRequest = async () => {
+      setLoading(true)
+      const formData = new FormData()
+      formData.append('file', imageFile as File)
+      formData.append('background', background)
+      formData.append('style', style)
+  
+      try {
+        const response = await fetch('http://localhost:8000/background-generation', {
+          method: 'POST',
+          body: formData,
+        })
+  
+        if (response.ok) {
+          const result = await response.json()
+          return result.image
+        } else {
+          console.error('Failed to generate image')
+        }
+      } catch (error) {
+        console.error('Error:', error)
+      } finally {
+        setLoading(false)
+      }
+      return null
+    }
+  
+    const imagesResult = await Promise.all([sendRequest()])
+    setImages(prevImages => [
+      ...imagesResult.filter((image): image is string => image !== null),
+      ...prevImages
+    ])
+  }
+  
+
   return (
     <div className="generate">
-      <div className="generate-image-display-container">
-        {imageFile && (
-          <img
-            src={URL.createObjectURL(imageFile)}
-            alt="Uploaded Preview"
-            className="generate-image-preview"
-          />
-        )}
-      </div>
-      <div className="generate-button-container">
-        <DropButton onImageUpload={handleImageUpload} />
-      </div>
-      <GeneratorForm
-        dropdownOptions1={dropdownOptions1}
-        dropdownOptions2={dropdownOptions2}
-        responseReceived={responseReceived}
+      <Generator
         imageFile={imageFile}
+        backgroundOptions={backgroundOptions}
+        styleOptions={styleOptions}
+        responsePropsReceived={responsePropsReceived}
+        getProps={getProps}
+        getImages={getImages}
       />
+      <Gallery images={images} loading={loading} />
     </div>
   )
 }

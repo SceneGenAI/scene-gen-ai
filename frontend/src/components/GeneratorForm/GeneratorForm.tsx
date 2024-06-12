@@ -1,43 +1,37 @@
 import './GeneratorForm.css'
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import Dropdown from '../Dropdown/Dropdown'
 import TextField from '../TextField/TextField'
+import RingSpinner from '../RingSpinner/RingSpinner'
 
 interface GeneratorProps {
-  dropdownOptions1: { value: number; label: string }[]
-  dropdownOptions2: { value: number; label: string }[]
-  responseReceived: boolean
+  backgroundOptions: { value: number; label: string }[]
+  styleOptions: { value: number; label: string }[]
+  responsePropsReceived: boolean
   imageFile: File | null
+  getImages: (background: string, style: string) => void
 }
 
-const Generator: React.FC<GeneratorProps> = ({
-  dropdownOptions1,
-  dropdownOptions2,
-  responseReceived,
+const GeneratorForm: React.FC<GeneratorProps> = ({
+  backgroundOptions,
+  styleOptions,
+  responsePropsReceived,
   imageFile,
+  getImages,
 }) => {
   const { t }: { t: (key: string) => string } = useTranslation()
-  const defaultTextValue = ''
-  const [dropdownValue1, setDropdownValue1] = useState<number>(
-    dropdownOptions2.length > 0 ? dropdownOptions2[0].value : 0,
-  )
-  const [dropdownValue2, setDropdownValue2] = useState<number>(
-    dropdownOptions2.length > 0 ? dropdownOptions2[0].value : 0,
-  )
-  const [textValue1, setTextValue1] = useState<string>(defaultTextValue)
-  const [textValue2, setTextValue2] = useState<string>(defaultTextValue)
+  const [backgroundDropdown, setBackgroundDropdown] = useState<number>(0)
+  const [styleDropdown, setStyleDropdown] = useState<number>(0)
+  const [backgroundText, setBackgroundText] = useState<string>('')
+  const [styleText, setStyleText] = useState<string>('')
   const [useTextField, setUseTextField] = useState<boolean>(false)
-  const navigate = useNavigate()
 
-  const handleGenerate = () => {
-    const options = {
-      value1: useTextField ? textValue1 : dropdownValue1,
-      value2: useTextField ? textValue2 : dropdownValue2,
-    }
+  const handleGenerate = async () => {
+    const background = useTextField ? backgroundText : backgroundOptions.find(option => option.value === backgroundDropdown)?.label || '';
+    const style = useTextField ? styleText : styleOptions.find(option => option.value === styleDropdown)?.label || '';
 
-    navigate('/collage', { state: { options, imageFile } })
+    await getImages(background, style);
   }
 
   const toggleInputType = () => {
@@ -45,51 +39,57 @@ const Generator: React.FC<GeneratorProps> = ({
   }
 
   return (
-    <div className="generator-container">
-      {!responseReceived ? (
-        <div>{t('Loading')}</div>
+    <div className={`generator-form-container ${(imageFile === null || !responsePropsReceived) ? 'no-content' : ''}`}>
+      {imageFile === null ? (
+        <div className="generator-form-message">
+          {t('Upload an image to continue')}
+        </div>
+      ) : !responsePropsReceived ? (
+        <RingSpinner />
       ) : (
-        <div className="generator-input-container">
-          <div className="generator-input-field">
-            {useTextField ? (
-              <TextField value={textValue1} onChange={setTextValue1} label={t('Background')} />
-            ) : (
-              <Dropdown
-                options={dropdownOptions1}
-                onChange={setDropdownValue1}
-                label={t('Background')}
-              />
-            )}
+        <div className='generator-form-content'>
+          <div className="generator-form-input-container">
+            <div className="generator-form-input-field">
+              {useTextField ? (
+                <TextField value={backgroundText} onChange={setBackgroundText} label={t('Background')} />
+              ) : (
+                <Dropdown
+                  options={backgroundOptions}
+                  onChange={value => setBackgroundDropdown(value)}
+                  label={t('Background')}
+                />
+              )}
+            </div>
+            <div className="generator-form-input-field">
+              {useTextField ? (
+                <TextField value={styleText} onChange={setStyleText} label={t('Style')} />
+              ) : (
+                <Dropdown
+                  options={styleOptions}
+                  onChange={value => setStyleDropdown(value)}
+                  label={t('Style')}
+                />
+              )}
+            </div>
           </div>
-          <div className="generator-input-field">
-            {useTextField ? (
-              <TextField value={textValue2} onChange={setTextValue2} label={t('Style')} />
-            ) : (
-              <Dropdown
-                options={dropdownOptions2}
-                onChange={setDropdownValue2}
-                label={t('Style')}
-              />
-            )}
-          </div>
+          <button
+            className="generator-form-generate-button"
+            onClick={handleGenerate}
+            disabled={!responsePropsReceived}
+          >
+            {t('Generate')}
+          </button>
+          <button
+            className="generator-form-toggle-button"
+            onClick={toggleInputType}
+            disabled={!responsePropsReceived}
+          >
+            {useTextField ? t('Back') : t('Not satisfied with the background or style?')}{' '}
+          </button>
         </div>
       )}
-      <button
-        className="generator-generate-button"
-        onClick={handleGenerate}
-        disabled={!responseReceived}
-      >
-        {t('Generate')}
-      </button>
-      <button
-        className="generator-toggle-button"
-        onClick={toggleInputType}
-        disabled={!responseReceived}
-      >
-        {useTextField ? t('Back') : t('Not satisfied with the background or style?')}{' '}
-      </button>
     </div>
   )
 }
 
-export default Generator
+export default GeneratorForm

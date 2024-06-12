@@ -21,10 +21,10 @@ const Collage: React.FC = () => {
   const requestSent = useRef(false)
 
   useEffect(() => {
-    console.log(1);
+    console.log(1)
 
     if (!requestSent.current) {
-      console.log(2);
+      console.log(2)
 
       requestSent.current = true
 
@@ -63,10 +63,7 @@ const Collage: React.FC = () => {
           <div className="collage-image-display-container">
             {images.map((image, index) => (
               <div className="collage-image-preview-container" key={index}>
-                <a
-                  href={`data:image/png;base64,${image}`}
-                  download={`collage_${index + 1}.png`}
-                >
+                <a href={`data:image/png;base64,${image}`} download={`collage_${index + 1}.png`}>
                   <img
                     src={`data:image/png;base64,${image}`}
                     alt={`Collage ${index + 1}`}

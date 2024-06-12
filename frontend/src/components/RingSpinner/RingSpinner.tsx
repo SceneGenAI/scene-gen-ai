@@ -6,7 +6,7 @@ const RingSpinner: React.FC = () => {
     <div className="ring-spinner-wrapper">
       <div className="ring-spinner"></div>
     </div>
-  );
-};
+  )
+}
 
-export default RingSpinner;
+export default RingSpinner

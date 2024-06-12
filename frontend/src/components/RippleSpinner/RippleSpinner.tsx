@@ -1,5 +1,5 @@
-import './RippleSpinner.css';
-import React from 'react';
+import './RippleSpinner.css'
+import React from 'react'
 
 const RippleSpinner: React.FC = () => {
   return (
@@ -7,7 +7,7 @@ const RippleSpinner: React.FC = () => {
       <div></div>
       <div></div>
     </div>
-  );
-};
+  )
+}
 
-export default RippleSpinner;
+export default RippleSpinner

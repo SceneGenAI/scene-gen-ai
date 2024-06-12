@@ -28,10 +28,14 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
   const [useTextField, setUseTextField] = useState<boolean>(false)
 
   const handleGenerate = async () => {
-    const background = useTextField ? backgroundText : backgroundOptions.find(option => option.value === backgroundDropdown)?.label || '';
-    const style = useTextField ? styleText : styleOptions.find(option => option.value === styleDropdown)?.label || '';
+    const background = useTextField
+      ? backgroundText
+      : backgroundOptions.find((option) => option.value === backgroundDropdown)?.label || ''
+    const style = useTextField
+      ? styleText
+      : styleOptions.find((option) => option.value === styleDropdown)?.label || ''
 
-    await getImages(background, style);
+    await getImages(background, style)
   }
 
   const toggleInputType = () => {
@@ -39,23 +43,27 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
   }
 
   return (
-    <div className={`generator-form-container ${(imageFile === null || !responsePropsReceived) ? 'no-content' : ''}`}>
+    <div
+      className={`generator-form-container ${imageFile === null || !responsePropsReceived ? 'no-content' : ''}`}
+    >
       {imageFile === null ? (
-        <div className="generator-form-message">
-          {t('Upload an image to continue')}
-        </div>
+        <div className="generator-form-message">{t('Upload an image to continue')}</div>
       ) : !responsePropsReceived ? (
         <RingSpinner />
       ) : (
-        <div className='generator-form-content'>
+        <div className="generator-form-content">
           <div className="generator-form-input-container">
             <div className="generator-form-input-field">
               {useTextField ? (
-                <TextField value={backgroundText} onChange={setBackgroundText} label={t('Background')} />
+                <TextField
+                  value={backgroundText}
+                  onChange={setBackgroundText}
+                  label={t('Background')}
+                />
               ) : (
                 <Dropdown
                   options={backgroundOptions}
-                  onChange={value => setBackgroundDropdown(value)}
+                  onChange={(value) => setBackgroundDropdown(value)}
                   label={t('Background')}
                 />
               )}
@@ -66,7 +74,7 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
               ) : (
                 <Dropdown
                   options={styleOptions}
-                  onChange={value => setStyleDropdown(value)}
+                  onChange={(value) => setStyleDropdown(value)}
                   label={t('Style')}
                 />
               )}

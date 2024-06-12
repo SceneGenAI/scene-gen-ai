@@ -1,15 +1,15 @@
 import './Gallery.css'
-import React from 'react';
-import { useTheme, Theme } from '../../contexts/ThemeProvider';
-import RippleSpinner from '../../components/RippleSpinner/RippleSpinner';
+import React from 'react'
+import { useTheme, Theme } from '../../contexts/ThemeProvider'
+import RippleSpinner from '../../components/RippleSpinner/RippleSpinner'
 
 interface GalleryProps {
-  images: string[];
-  loading: boolean;
+  images: string[]
+  loading: boolean
 }
 
 const Gallery: React.FC<GalleryProps> = ({ images, loading }) => {
-  const { theme } = useTheme();
+  const { theme } = useTheme()
 
   return (
     <div className="gallery">
@@ -23,14 +23,13 @@ const Gallery: React.FC<GalleryProps> = ({ images, loading }) => {
             <div className="loading-container">
               <RippleSpinner />
             </div>
-          ) : (<div></div>)}
-          
+          ) : (
+            <div></div>
+          )}
+
           {images.map((image, index) => (
             <div className="gallery-image-container" key={index}>
-              <a
-                href={`data:image/png;base64,${image}`}
-                download={`gallery_${index + 1}.png`}
-              >
+              <a href={`data:image/png;base64,${image}`} download={`gallery_${index + 1}.png`}>
                 <img
                   src={`data:image/png;base64,${image}`}
                   alt={`Collage ${index + 1}`}
@@ -55,7 +54,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, loading }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Gallery;
+export default Gallery

@@ -1,7 +1,7 @@
 import './Generator.css'
-import React from 'react';
-import DropButton from '../../components/DropButton/DropButton';
-import GeneratorForm from '../../components/GeneratorForm/GeneratorForm';
+import React from 'react'
+import DropButton from '../../components/DropButton/DropButton'
+import GeneratorForm from '../../components/GeneratorForm/GeneratorForm'
 
 interface DropdownOption {
   value: number
@@ -9,12 +9,12 @@ interface DropdownOption {
 }
 
 interface GenerateProps {
-  imageFile: File | null;
-  backgroundOptions: DropdownOption[];
-  styleOptions: { value: number; label: string }[];
-  responsePropsReceived: boolean;
-  getProps: (files: FileList) => Promise<void>;
-  getImages: (background: string, style: string) => Promise<void>;
+  imageFile: File | null
+  backgroundOptions: DropdownOption[]
+  styleOptions: { value: number; label: string }[]
+  responsePropsReceived: boolean
+  getProps: (files: FileList) => Promise<void>
+  getImages: (background: string, style: string) => Promise<void>
 }
 
 const Generator: React.FC<GenerateProps> = ({
@@ -49,7 +49,7 @@ const Generator: React.FC<GenerateProps> = ({
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Generator;
+export default Generator

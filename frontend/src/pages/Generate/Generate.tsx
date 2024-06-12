@@ -53,13 +53,13 @@ const Generate: React.FC = () => {
       formData.append('file', imageFile as File)
       formData.append('background', background)
       formData.append('style', style)
-  
+
       try {
         const response = await fetch('http://localhost:8000/background-generation', {
           method: 'POST',
           body: formData,
         })
-  
+
         if (response.ok) {
           const result = await response.json()
           return result.image
@@ -73,14 +73,13 @@ const Generate: React.FC = () => {
       }
       return null
     }
-  
+
     const imagesResult = await Promise.all([sendRequest()])
-    setImages(prevImages => [
+    setImages((prevImages) => [
       ...imagesResult.filter((image): image is string => image !== null),
-      ...prevImages
+      ...prevImages,
     ])
   }
-  
 
   return (
     <div className="generate">

@@ -1,18 +1,18 @@
-import './GeneratorForm.css'
-import React, { useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import Dropdown from '../Dropdown/Dropdown'
-import TextField from '../TextField/TextField'
-import RingSpinner from '../RingSpinner/RingSpinner'
-import ToggleButton from '../ToggleButton/ToggleButton'
+import './GeneratorForm.css';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import Dropdown from '../Dropdown/Dropdown';
+import TextField from '../TextField/TextField';
+import RingSpinner from '../RingSpinner/RingSpinner';
+import ToggleButton from '../ToggleButton/ToggleButton';
 
 interface GeneratorProps {
-  backgroundOptions: { value: number; label: string }[]
-  styleOptions: { value: number; label: string }[]
-  responsePropsReceived: boolean
-  imageFile: File | null
-  getImages: (background: string, style: string) => void
-  setNumberImagesOption: React.Dispatch<React.SetStateAction<number>>
+  backgroundOptions: { value: number; label: string }[];
+  styleOptions: { value: number; label: string }[];
+  responsePropsReceived: boolean;
+  imageFile: File | null;
+  getImages: (background: string, style: string) => void;
+  setNumberImagesOption: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const GeneratorForm: React.FC<GeneratorProps> = ({
@@ -23,31 +23,31 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
   getImages,
   setNumberImagesOption,
 }) => {
-  const { t }: { t: (key: string) => string } = useTranslation()
-  const [backgroundDropdown, setBackgroundDropdown] = useState<number>(0)
-  const [styleDropdown, setStyleDropdown] = useState<number>(0)
-  const [backgroundText, setBackgroundText] = useState<string>('')
-  const [styleText, setStyleText] = useState<string>('')
-  const [useTextField, setUseTextField] = useState<boolean>(false)
+  const { t }: { t: (key: string) => string } = useTranslation();
+  const [backgroundDropdown, setBackgroundDropdown] = useState<number>(0);
+  const [styleDropdown, setStyleDropdown] = useState<number>(0);
+  const [backgroundText, setBackgroundText] = useState<string>('');
+  const [styleText, setStyleText] = useState<string>('');
+  const [useTextField, setUseTextField] = useState<boolean>(false);
 
   const handleGenerate = async () => {
     const background = useTextField
       ? backgroundText
-      : backgroundOptions.find((option) => option.value === backgroundDropdown)?.label || ''
+      : backgroundOptions.find((option) => option.value === backgroundDropdown)?.label || '';
     const style = useTextField
       ? styleText
-      : styleOptions.find((option) => option.value === styleDropdown)?.label || ''
+      : styleOptions.find((option) => option.value === styleDropdown)?.label || '';
 
-    await getImages(background, style)
-  }
+    await getImages(background, style);
+  };
 
   const handleNumberImagesSelect = (value: number) => {
-    setNumberImagesOption(value)
-  }
+    setNumberImagesOption(value);
+  };
 
   const toggleInputType = () => {
-    setUseTextField(!useTextField)
-  }
+    setUseTextField(!useTextField);
+  };
 
   return (
     <div
@@ -107,7 +107,7 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default GeneratorForm
+export default GeneratorForm;

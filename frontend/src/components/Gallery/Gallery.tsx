@@ -1,15 +1,15 @@
-import './Gallery.css'
-import React from 'react'
-import { useTheme, Theme } from '../../contexts/ThemeProvider'
-import RippleSpinner from '../../components/RippleSpinner/RippleSpinner'
+import './Gallery.css';
+import React from 'react';
+import { useTheme, Theme } from '../../contexts/ThemeProvider';
+import RippleSpinner from '../../components/RippleSpinner/RippleSpinner';
 
 interface GalleryProps {
-  images: string[]
-  loading: boolean
+  images: string[];
+  loading: boolean;
 }
 
 const Gallery: React.FC<GalleryProps> = ({ images, loading }) => {
-  const { theme } = useTheme()
+  const { theme } = useTheme();
 
   return (
     <div className="gallery">
@@ -52,7 +52,7 @@ const Gallery: React.FC<GalleryProps> = ({ images, loading }) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default Gallery
+export default Gallery;

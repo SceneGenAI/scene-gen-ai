@@ -1,22 +1,22 @@
-import './BurgerMenu.css'
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import { useTheme, Theme } from '../../contexts/ThemeProvider'
+import './BurgerMenu.css';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useTheme, Theme } from '../../contexts/ThemeProvider';
 
 const BurgerMenu: React.FC = () => {
-  const { t, i18n } = useTranslation()
-  const { theme, toggleTheme } = useTheme()
-  const [isOpen, setIsOpen] = useState(false)
+  const { t, i18n } = useTranslation();
+  const { theme, toggleTheme } = useTheme();
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   const changeLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ru' : 'en'
-    i18n.changeLanguage(newLang)
-  }
+    const newLang = i18n.language === 'en' ? 'ru' : 'en';
+    i18n.changeLanguage(newLang);
+  };
 
   return (
     <div className="burger-menu">
@@ -56,7 +56,7 @@ const BurgerMenu: React.FC = () => {
         </div>
       </nav>
     </div>
-  )
-}
+  );
+};
 
-export default BurgerMenu
+export default BurgerMenu;

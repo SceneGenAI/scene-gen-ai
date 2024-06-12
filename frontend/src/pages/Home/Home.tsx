@@ -1,10 +1,10 @@
-import './Home.css'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
+import './Home.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const Home: React.FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <div className="home">
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
         <img src="/assets/swing-after.png" alt="swing-after" className="home-img-show" />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

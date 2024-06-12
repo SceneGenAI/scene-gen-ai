@@ -1,18 +1,18 @@
-import './ToggleButton.css'
-import React, { useState } from 'react'
+import './ToggleButton.css';
+import React, { useState } from 'react';
 
 interface ToggleButtonProps {
-  onSelect: (value: number) => void
-  label: string
+  onSelect: (value: number) => void;
+  label: string;
 }
 
 const ToggleButton: React.FC<ToggleButtonProps> = ({ onSelect, label }) => {
-  const [selectedValue, setSelectedValue] = useState<number>(1)
+  const [selectedValue, setSelectedValue] = useState<number>(1);
 
   const handleToggle = (value: number) => {
-    setSelectedValue(value)
-    onSelect(value)
-  }
+    setSelectedValue(value);
+    onSelect(value);
+  };
 
   return (
     <div className="toggle-group">
@@ -36,7 +36,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ onSelect, label }) => {
         4
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default ToggleButton
+export default ToggleButton;

@@ -4,7 +4,7 @@
 }
 
 .bg {
-    background: url(./src/assets/bg-waves.svg);
+    background: url(/assets/bg-waves.svg);
     background-repeat: no-repeat;
     background-size: contain;
     background-position-y: 100%;
@@ -30,9 +30,33 @@
 
 @media only screen and (max-width: 480px) {
     .bg {
-        background: url(./src/assets/bg-waves-mobile.svg);
+        background: url(/assets/bg-waves-mobile.svg);
         background-repeat: no-repeat;
         background-size: contain;
         background-position-y: 100%;
+    }
+}
+
+[color-scheme='dark'] {
+    .bg {
+        background: url(/assets/bg-waves-dark.svg);
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position-y: 100%;
+        z-index: -10;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+    @media only screen and (max-width: 480px) {
+        .bg {
+            background: url(/assets/bg-waves-mobile-dark.svg);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position-y: 100%;
+        }
     }
 }

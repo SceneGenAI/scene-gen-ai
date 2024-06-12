@@ -8,7 +8,7 @@
     flex: 2;
 }
 
-.gallery-loader-container {
+.gallery-loading-container {
     width: 99%;
     height: 100%;
     background-color: var(--secondary-bg-color);
@@ -29,7 +29,7 @@
     display: block;
     columns: 2;
     gap: 1rem;
-    min-height: 94%;
+    min-height: 85vh;
 }
 
 .gallery-image-container {
@@ -67,7 +67,7 @@
     z-index: 10;
 }
 
-.loading-container {
+.gallery-loading-image-container {
     background: var(--border-color);
     margin-bottom: 1rem;
     height: 50%;
@@ -76,7 +76,19 @@
     justify-content: space-around;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1000px) {
+    .gallery {
+        flex: 1;
+    }
+    .gallery-image-display-container {
+        width: 85%;
+        overflow-y: auto;
+        display: block;
+        columns: 1;
+    }
+}
+
+@media only screen and (max-width: 640px) {
     .gallery {
         padding-top: 3rem;
         height: calc(100% - 3.5rem);

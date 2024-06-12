@@ -1,6 +1,6 @@
 {
   "Language": "En",
-  "Sign in": "Sign in",
+  "Log in": "Log in",
   "Sign up": "Sign up",
   "Scene generator": "Scene Generator",
   "Generate scene for your product": "Generate scene for your product",
@@ -9,6 +9,7 @@
   "Loading": "Loading...",
   "Generate": "Generate",
   "Background": "Background",
+  "Number of images": "Number of images",
   "Style": "Style",
   "Not satisfied with the background or style?": "Not satisfied with the background or style?",
   "Upload an image to continue": "Upload an image to continue",

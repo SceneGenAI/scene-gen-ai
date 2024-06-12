@@ -1,18 +1,18 @@
-import './Header.css'
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useTranslation } from 'react-i18next'
-import { useTheme, Theme } from '../../contexts/ThemeProvider'
-import BurgerMenu from '../BurgerMenu/BurgerMenu'
+import './Header.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { useTheme, Theme } from '../../contexts/ThemeProvider';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
 const Header: React.FC = () => {
-  const { t, i18n } = useTranslation()
-  const { theme, toggleTheme } = useTheme()
+  const { t, i18n } = useTranslation();
+  const { theme, toggleTheme } = useTheme();
 
   const changeLanguage = () => {
-    const newLang = i18n.language === 'en' ? 'ru' : 'en'
-    i18n.changeLanguage(newLang)
-  }
+    const newLang = i18n.language === 'en' ? 'ru' : 'en';
+    i18n.changeLanguage(newLang);
+  };
 
   return (
     <header className="header">
@@ -29,20 +29,16 @@ const Header: React.FC = () => {
           </div>
           <div className="header-item" onClick={toggleTheme}>
             {theme === Theme.LIGHT ? (
-              <img
-                src="./src/components/icons/MoonIcon.svg"
-                alt="moon-icon"
-                className="theme-icon"
-              />
+              <img src="/icons/MoonIcon.svg" alt="moon-icon" className="theme-icon" />
             ) : (
-              <img src="./src/components/icons/SunIcon.svg" alt="sun-icon" className="theme-icon" />
+              <img src="/icons/SunIcon.svg" alt="sun-icon" className="theme-icon" />
             )}
           </div>
         </div>
         <div className="header-section header-right">
           <div className="header-item">
-            <Link to="/sign-in" className="underlined">
-              {t('Sign in')}
+            <Link to="/log-in" className="underlined">
+              {t('Log in')}
             </Link>
           </div>
           <div className="header-item">
@@ -53,7 +49,7 @@ const Header: React.FC = () => {
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

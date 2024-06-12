@@ -4,13 +4,12 @@
     flex: 1;
 }
 
-.generator-fixed{
+.generator-fixed {
     position: fixed;
     top: 64px;
     bottom: 0;
     left: 0.33%;
     right: 66.66%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -44,7 +43,17 @@
     max-height: 100%;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 1000px) {
+    .generator-fixed {
+        position: fixed;
+        top: 64px;
+        bottom: 0;
+        left: 0.33%;
+        right: 50.33%;
+    }
+}
+
+@media only screen and (max-width: 640px) {
     .generator {
         display: block;
         height: calc(100% - 3.5rem);

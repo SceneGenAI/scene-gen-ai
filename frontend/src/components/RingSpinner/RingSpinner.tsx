@@ -1,5 +1,5 @@
-import './RingSpinner.css'
-import React from 'react'
+import './RingSpinner.css';
+import React from 'react';
 
 const RingSpinner: React.FC = () => {
   return (

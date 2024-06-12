@@ -1,7 +1,7 @@
 {
   "Language": "Ru",
-  "Sign in": "Регистрация",
-  "Sign up": "Войти",
+  "Log in": "Регистрация",
+  "Sign up": "Вход",
   "Scene generator": "Онлайн генератор сцен",
   "Generate scene for your product": "Сгенерируйте сцену для своего товара",
   "Begin": "Начать",
@@ -9,6 +9,7 @@
   "Loading": "Загрузка...",
   "Generate": "Сгенерировать",
   "Background": "Фон",
+  "Number of images": "Количество изображений",
   "Style": "Стиль",
   "Not satisfied with the background or style?": "Не устроил фон или стиль?",
   "Upload an image to continue": "Загрузите изображение, чтобы продолжить",

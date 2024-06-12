@@ -38,11 +38,17 @@
 
 .home-begin-button p {
     margin: 0 auto;
-    color: var(--bg-color);
+    color: #f3f3f3;
 }
 
 .home-img-show {
     width: 30%;
+    border-radius: 5px;
+    border: 1px solid var(--border-color);
+}
+
+.swing-before {
+    background-color: var(--secondary-bg-color);
 }
 
 .home-arrow {

@@ -1,6 +1,6 @@
 .generator-form-container {
     width: 94%;
-    height: 30%;
+    height: 50%;
     background-color: var(--secondary-bg-color);
     border: 1px solid var(--border-color);
     border-radius: 10px 10px 0 0;
@@ -20,7 +20,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .generator-form-message {
@@ -43,10 +43,9 @@
     padding: 1rem 2rem;
     font-size: var(--fontsize-medium1);
     background-color: var(--secondary-color);
-    color: white;
+    color: #f3f3f3;
     border: none;
     border-radius: 5px;
-    box-shadow: 0 0 10px var(--border-color);
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -67,30 +66,39 @@
 .generator-form-toggle-button {
     background: none;
     border: none;
-    color: var(--secondary-color);
+    color: var(--text-color);
     cursor: pointer;
     font-size: var(--fontsize-small);
     text-decoration: underline;
 }
 
 .generator-form-toggle-button:hover {
-    color: var(--secondary-text-color);
+    color: var(--secondary-color);
 }
 
 .generator-form-toggle-button[disabled] {
-    color: var(--secondary-text-color);
+    color: var(--text-color);
 }
 
 .generator-form-toggle-button:hover[disabled] {
     cursor: not-allowed;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 640px) {
     .generator-form-container {
         width: 80%;
+        height: 40%;
         padding: 5%;
-        justify-content: space-evenly;
         border-radius: 10px;
+    }
+
+    .generator-form-content {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
     }
 
     .generator-form-input-field {

@@ -19,7 +19,6 @@
     border: 1px solid var(--border-color);
     border-radius: 5px;
     appearance: none;
-    background-color: var(--bg-color);
     background: url('./../icons/DropdownArrow.svg') no-repeat right 10px center;
     background-color: var(--bg-color);
     background-size: var(--fontsize-medium1);
@@ -32,9 +31,9 @@
 
 .dropdown-header {
     font-size: var(--fontsize-medium1);
-    background-color: var(--bg-color);
+    background-color: var(--fields-bg-color);
     padding: 1rem;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--fields-border-color);
     border-radius: 5px;
     cursor: pointer;
     display: flex;

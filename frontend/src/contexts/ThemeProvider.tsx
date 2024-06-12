@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState } from 'react';
 
 export enum Theme {
   LIGHT = 'light',
@@ -6,37 +6,37 @@ export enum Theme {
 }
 
 interface ThemeContextType {
-  theme: Theme
-  toggleTheme: () => void
+  theme: Theme;
+  toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export const useTheme = () => {
-  const context = useContext(ThemeContext)
+  const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider')
+    throw new Error('useTheme must be used within a ThemeProvider');
   }
-  return context
-}
+  return context;
+};
 
 type Props = {
-  children: React.ReactNode
-}
+  children: React.ReactNode;
+};
 
 export const ThemeProvider: React.FC<Props> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(Theme.LIGHT)
+  const [theme, setTheme] = useState<Theme>(Theme.LIGHT);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => {
-      const newScheme = prevTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT
+      const newScheme = prevTheme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT;
       document.documentElement.setAttribute(
         'color-scheme',
         newScheme === Theme.LIGHT ? 'light' : 'dark',
-      )
-      return newScheme
-    })
-  }
+      );
+      return newScheme;
+    });
+  };
 
-  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
-}
+  return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>;
+};

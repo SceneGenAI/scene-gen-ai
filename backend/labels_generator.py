@@ -33,7 +33,7 @@ class LabelsGenerator:
         img = np.reshape(img, [1, 128, 128, 3])
         return img
 
-    def predict_labels(self, img, max_labels=5):
+    def predict_labels(self, img, max_labels=2):
         img = self._preprocess_image(img)
         prediction = self.model.predict(img)
         labels = []

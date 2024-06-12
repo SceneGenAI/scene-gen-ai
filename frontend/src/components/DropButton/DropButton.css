@@ -8,6 +8,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    transition: background 0.3s;
 }
 
 .drop-button-container:hover {
@@ -15,7 +16,7 @@
 }
 
 .drop-button-container p {
-    color: var(--bg-color);
+    color: #f3f3f3;
 }
 
 .drop-button-container input {

@@ -14,18 +14,16 @@ const Gallery: React.FC<GalleryProps> = ({ images, loading }) => {
   return (
     <div className="gallery">
       {images.length === 0 ? (
-        <div className="gallery-loader-container">
+        <div className="gallery-loading-container">
           <RippleSpinner />
         </div>
       ) : (
         <div className="gallery-image-display-container">
           {loading ? (
-            <div className="loading-container">
+            <div className="gallery-loading-image-container">
               <RippleSpinner />
             </div>
-          ) : (
-            <div></div>
-          )}
+          ) : null}
 
           {images.map((image, index) => (
             <div className="gallery-image-container" key={index}>
@@ -35,20 +33,20 @@ const Gallery: React.FC<GalleryProps> = ({ images, loading }) => {
                   alt={`Collage ${index + 1}`}
                   className="gallery-image"
                 />
+                {theme === Theme.LIGHT ? (
+                  <img
+                    src="/icons/DownloadLight.svg"
+                    alt={`download ${index + 1}`}
+                    className="gallery-download-icon"
+                  />
+                ) : (
+                  <img
+                    src="/icons/DownloadDark.svg"
+                    alt={`download ${index + 1}`}
+                    className="gallery-download-icon"
+                  />
+                )}
               </a>
-              {theme === Theme.LIGHT ? (
-                <img
-                  src="./src/components/icons/DownloadLight.svg"
-                  alt={`download ${index + 1}`}
-                  className="gallery-download-icon"
-                />
-              ) : (
-                <img
-                  src="./src/components/icons/DownloadDark.svg"
-                  alt={`download ${index + 1}`}
-                  className="gallery-download-icon"
-                />
-              )}
             </div>
           ))}
         </div>

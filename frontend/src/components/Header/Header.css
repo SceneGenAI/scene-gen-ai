@@ -77,10 +77,11 @@
     align-items: center;
     cursor: pointer;
     justify-content: space-around;
+    transition: background 0.3s;
 }
 
 .sign-up-button p {
-    color: var(--bg-color);
+    color: #f3f3f3;
 }
 
 .sign-up-button:hover {
@@ -104,6 +105,7 @@ a:visited {
     height: 100%;
     display: flex;
     align-items: center;
+    transition: border 0.1s;
 }
 
 .underlined:hover {
@@ -117,7 +119,7 @@ a:visited {
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 640px) {
     .header {
         display: block;
         padding: 0;

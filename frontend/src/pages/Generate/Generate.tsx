@@ -14,6 +14,7 @@ const Generate: React.FC = () => {
   const [responsePropsReceived, setResponsePropsReceived] = useState<boolean>(false)
   const [images, setImages] = useState<string[]>([])
   const [loading, setLoading] = useState(true)
+  const [numberImagesOption, setNumberImagesOption] = useState<number>(1)
 
   const styleOptions = [
     { value: 0, label: 'Minimalism' },
@@ -40,9 +41,11 @@ const Generate: React.FC = () => {
         setResponsePropsReceived(true)
       } else {
         console.error('Failed to fetch dropdown options')
+        // setImageFile(null)
       }
     } catch (error) {
       console.error('Error fetching dropdown options:', error)
+      // setImageFile(null)
     }
   }
 
@@ -74,7 +77,12 @@ const Generate: React.FC = () => {
       return null
     }
 
-    const imagesResult = await Promise.all([sendRequest()])
+    const promises = []
+    for (let i = 0; i < numberImagesOption; i++) {
+      promises.push(sendRequest())
+    }
+
+    const imagesResult = await Promise.all(promises)
     setImages((prevImages) => [
       ...imagesResult.filter((image): image is string => image !== null),
       ...prevImages,
@@ -90,6 +98,7 @@ const Generate: React.FC = () => {
         responsePropsReceived={responsePropsReceived}
         getProps={getProps}
         getImages={getImages}
+        setNumberImagesOption={setNumberImagesOption}
       />
       <Gallery images={images} loading={loading} />
     </div>

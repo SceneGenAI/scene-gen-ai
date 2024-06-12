@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import Dropdown from '../Dropdown/Dropdown'
 import TextField from '../TextField/TextField'
 import RingSpinner from '../RingSpinner/RingSpinner'
+import ToggleButton from '../ToggleButton/ToggleButton'
 
 interface GeneratorProps {
   backgroundOptions: { value: number; label: string }[]
@@ -11,6 +12,7 @@ interface GeneratorProps {
   responsePropsReceived: boolean
   imageFile: File | null
   getImages: (background: string, style: string) => void
+  setNumberImagesOption: React.Dispatch<React.SetStateAction<number>>
 }
 
 const GeneratorForm: React.FC<GeneratorProps> = ({
@@ -19,6 +21,7 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
   responsePropsReceived,
   imageFile,
   getImages,
+  setNumberImagesOption,
 }) => {
   const { t }: { t: (key: string) => string } = useTranslation()
   const [backgroundDropdown, setBackgroundDropdown] = useState<number>(0)
@@ -38,6 +41,10 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
     await getImages(background, style)
   }
 
+  const handleNumberImagesSelect = (value: number) => {
+    setNumberImagesOption(value)
+  }
+
   const toggleInputType = () => {
     setUseTextField(!useTextField)
   }
@@ -53,20 +60,23 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
       ) : (
         <div className="generator-form-content">
           <div className="generator-form-input-container">
+            {useTextField ? (
+              <TextField
+                value={backgroundText}
+                onChange={setBackgroundText}
+                label={t('Background')}
+              />
+            ) : (
+              <Dropdown
+                options={backgroundOptions}
+                onChange={(value) => setBackgroundDropdown(value)}
+                label={t('Background')}
+              />
+            )}
+          </div>
+          <div className="generator-form-input-container">
             <div className="generator-form-input-field">
-              {useTextField ? (
-                <TextField
-                  value={backgroundText}
-                  onChange={setBackgroundText}
-                  label={t('Background')}
-                />
-              ) : (
-                <Dropdown
-                  options={backgroundOptions}
-                  onChange={(value) => setBackgroundDropdown(value)}
-                  label={t('Background')}
-                />
-              )}
+              <ToggleButton onSelect={handleNumberImagesSelect} label={t('Number of images')} />
             </div>
             <div className="generator-form-input-field">
               {useTextField ? (

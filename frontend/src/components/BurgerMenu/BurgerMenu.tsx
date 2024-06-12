@@ -35,17 +35,9 @@ const BurgerMenu: React.FC = () => {
             </div>
             <div className="burger-container-line burger-theme" onClick={toggleTheme}>
               {theme === Theme.LIGHT ? (
-                <img
-                  src="./src/components/icons/MoonIcon.svg"
-                  alt="moon-icon"
-                  className="burger-theme-icon"
-                />
+                <img src="/icons/MoonIcon.svg" alt="moon-icon" className="burger-theme-icon" />
               ) : (
-                <img
-                  src="./src/components/icons/SunIcon.svg"
-                  alt="sun-icon"
-                  className="burger-theme-icon"
-                />
+                <img src="/icons/SunIcon.svg" alt="sun-icon" className="burger-theme-icon" />
               )}
             </div>
           </div>

@@ -29,13 +29,9 @@ const Header: React.FC = () => {
           </div>
           <div className="header-item" onClick={toggleTheme}>
             {theme === Theme.LIGHT ? (
-              <img
-                src="./src/components/icons/MoonIcon.svg"
-                alt="moon-icon"
-                className="theme-icon"
-              />
+              <img src="/icons/MoonIcon.svg" alt="moon-icon" className="theme-icon" />
             ) : (
-              <img src="./src/components/icons/SunIcon.svg" alt="sun-icon" className="theme-icon" />
+              <img src="/icons/SunIcon.svg" alt="sun-icon" className="theme-icon" />
             )}
           </div>
         </div>

@@ -18,9 +18,13 @@ const Home: React.FC = () => {
         </Link>
       </div>
       <div className="home-images-container">
-        <img src="./src/assets/swing-before.png" alt="swing-before" className="home-img-show" />
-        <img src="./src/components/icons/Arrow.svg" alt="arrow" className="home-arrow" />
-        <img src="./src/assets/swing-after.png" alt="swing-after" className="home-img-show" />
+        <img
+          src="/assets/swing-before.png"
+          alt="swing-before"
+          className="home-img-show swing-before"
+        />
+        <img src="/icons/Arrow.svg" alt="arrow" className="home-arrow" />
+        <img src="/assets/swing-after.png" alt="swing-after" className="home-img-show" />
       </div>
     </div>
   )

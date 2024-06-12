@@ -15,6 +15,7 @@ interface GenerateProps {
   responsePropsReceived: boolean
   getProps: (files: FileList) => Promise<void>
   getImages: (background: string, style: string) => Promise<void>
+  setNumberImagesOption: React.Dispatch<React.SetStateAction<number>>
 }
 
 const Generator: React.FC<GenerateProps> = ({
@@ -24,6 +25,7 @@ const Generator: React.FC<GenerateProps> = ({
   responsePropsReceived,
   getProps,
   getImages,
+  setNumberImagesOption,
 }) => {
   return (
     <div className="generator">
@@ -46,6 +48,7 @@ const Generator: React.FC<GenerateProps> = ({
           responsePropsReceived={responsePropsReceived}
           imageFile={imageFile}
           getImages={getImages}
+          setNumberImagesOption={setNumberImagesOption}
         />
       </div>
     </div>

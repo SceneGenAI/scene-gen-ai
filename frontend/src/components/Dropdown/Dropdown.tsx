@@ -59,13 +59,13 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onChange, label }) => {
         </div>
         {theme === Theme.LIGHT ? (
           <img
-            src="./src/components/icons/DropdownArrowLight.svg"
+            src="/icons/DropdownArrowLight.svg"
             alt="dropdown-arrow"
             className={`dropdown-arrow ${isOpen ? 'open' : ''}`}
           />
         ) : (
           <img
-            src="./src/components/icons/DropdownArrowDark.svg"
+            src="/icons/DropdownArrowDark.svg"
             alt="dropdown-arrow"
             className={`dropdown-arrow ${isOpen ? 'open' : ''}`}
           />

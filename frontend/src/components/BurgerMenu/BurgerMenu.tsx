@@ -43,8 +43,8 @@ const BurgerMenu: React.FC = () => {
           </div>
           <div className="burger-container">
             <div className="burger-container-line">
-              <Link to="/sign-in" className="underlined">
-                {t('Sign in')}
+              <Link to="/log-in" className="underlined">
+                {t('Log in')}
               </Link>
             </div>
             <div className="burger-container-line">

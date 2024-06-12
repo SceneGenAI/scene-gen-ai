@@ -37,8 +37,8 @@ const Header: React.FC = () => {
         </div>
         <div className="header-section header-right">
           <div className="header-item">
-            <Link to="/sign-in" className="underlined">
-              {t('Sign in')}
+            <Link to="/log-in" className="underlined">
+              {t('Log in')}
             </Link>
           </div>
           <div className="header-item">

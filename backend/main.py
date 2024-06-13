@@ -13,8 +13,13 @@ from background_generator import BackgroundGenerator
 from object_captioner import ObjectCaptioner
 from prompt_generator import PromptGenerator
 from labels_generator import LabelsGenerator
+from translate import Translator
+from config import IAM_TOKEN, FOLDER_ID
 
 logging.basicConfig(level=logging.INFO)
+
+# Initialize translation service
+translator = Translator(IAM_TOKEN, FOLDER_ID)
 
 # # Load the diffusion model pipeline and prompt generator
 object_captioner = ObjectCaptioner()
@@ -34,6 +39,19 @@ app.add_middleware(
     allow_methods=["POST"],
     allow_headers=["*"],
 )
+
+
+@app.post("/translate")
+def translate_text(texts: list[str], source_language: str, target_language: str):
+    """
+    Translate a list of texts into the target language
+    """
+    try:
+        result = translator.translate(texts, source_language, target_language)
+        return JSONResponse(content=result)
+    except Exception as e:
+        logging.error(f"Error translating text: {e}")
+        return JSONResponse(content={"error": f"Error translating text: {e}"}, status_code=500)
 
 
 @app.post("/generation-pipeline")
@@ -101,10 +119,20 @@ def prompt_generation(file: bytes = File(...)):
         prompt = prompt_generator.generate(caption, labels)
         logging.info(f"Prompt generated successfully: {prompt}")
         prompts = [{"value": idx, "label": prompt_line} for idx, prompt_line in enumerate(prompt.split('\n'))]
-        return JSONResponse(content=prompts)
     except Exception as e:
         logging.error(f"Error generating prompt: {e}")
         return JSONResponse(content={"error": f"Error generating prompt: {e}"}, status_code=500)
+    
+    try:
+        translated_prompts = translator.translate(prompts, "en", "ru")
+        response = {
+            "en": prompts,
+            "ru": translated_prompts
+        }
+        return JSONResponse(content=response)
+    except Exception as e:
+        logging.error(f"Error translating prompts: {e}")
+        return [{"error": f"Error translating prompt: {e}"} for _ in prompts]
 
 
 @app.post("/prompt-generation")

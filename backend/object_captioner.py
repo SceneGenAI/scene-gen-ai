@@ -30,7 +30,7 @@ class ObjectCaptioner:
 if __name__ == '__main__':
     oc = ObjectCaptioner()
 
-    with open("data/bat.jpg", "rb") as f:
+    with open("images/shtora.jpg", "rb") as f:
         file = f.read()
         caption = oc.generate_caption(file)
         print(caption)

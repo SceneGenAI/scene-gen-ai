@@ -105,12 +105,12 @@ class BackgroundGenerator:
 
 if __name__ == '__main__':
     bg = BackgroundGenerator()
-    prompt = "A hammock in a cozy garden with blooming flowers."
+    prompt = "A radiator in a cozy living room with a wooden wall."
     # prompt = "a swing chair on a background with building, floor-wood, grass, light, sky, tree"
     # prompt = "a swing chair in a blooming garden near the building"
     # prompt = "a swing chair on a background with building, floor-wood, grass, sky, tree"
     # prompt = "A radiator on the floor of the living room with grey-blue walls"
-    with open("images/gamak.png", "rb") as f:
+    with open("images/bat.jpg", "rb") as f:
         file = f.read()
         generated_image = bg.get_generated_picture(file, prompt)
         generated_image.save("generated_image.png")

@@ -13,6 +13,7 @@ interface GeneratorProps {
   imageFile: File | null;
   getImages: (background: string, style: string) => void;
   setNumberImagesOption: React.Dispatch<React.SetStateAction<number>>;
+  loading: boolean;
 }
 
 const GeneratorForm: React.FC<GeneratorProps> = ({
@@ -22,6 +23,7 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
   imageFile,
   getImages,
   setNumberImagesOption,
+  loading,
 }) => {
   const { t }: { t: (key: string) => string } = useTranslation();
   const [backgroundDropdown, setBackgroundDropdown] = useState<number>(0);
@@ -93,15 +95,11 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
           <button
             className="generator-form-generate-button"
             onClick={handleGenerate}
-            disabled={!responsePropsReceived}
+            disabled={loading}
           >
-            {t('Generate')}
+            {!loading ? t('Generate') : t('Generation')}
           </button>
-          <button
-            className="generator-form-toggle-button"
-            onClick={toggleInputType}
-            disabled={!responsePropsReceived}
-          >
+          <button className="generator-form-toggle-button" onClick={toggleInputType}>
             {useTextField ? t('Back') : t('Not satisfied with the background or style?')}{' '}
           </button>
         </div>

@@ -13,7 +13,7 @@ const Generate: React.FC = () => {
   const [backgroundOptions, setBackgroundOptions] = useState<DropdownOption[]>([]);
   const [responsePropsReceived, setResponsePropsReceived] = useState<boolean>(false);
   const [images, setImages] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [numberImagesOption, setNumberImagesOption] = useState<number>(1);
 
   const styleOptions = [
@@ -41,17 +41,16 @@ const Generate: React.FC = () => {
         setResponsePropsReceived(true);
       } else {
         console.error('Failed to fetch dropdown options');
-        // setImageFile(null)
+        setImageFile(null);
       }
     } catch (error) {
       console.error('Error fetching dropdown options:', error);
-      // setImageFile(null)
+      setImageFile(null);
     }
   };
 
   const getImages = async (background: string, style: string) => {
     const sendRequest = async () => {
-      setLoading(true);
       const formData = new FormData();
       formData.append('file', imageFile as File);
       formData.append('background', background);
@@ -71,8 +70,6 @@ const Generate: React.FC = () => {
         }
       } catch (error) {
         console.error('Error:', error);
-      } finally {
-        setLoading(false);
       }
       return null;
     };
@@ -82,7 +79,9 @@ const Generate: React.FC = () => {
       promises.push(sendRequest());
     }
 
+    setLoading(true);
     const imagesResult = await Promise.all(promises);
+    setLoading(false);
     setImages((prevImages) => [
       ...imagesResult.filter((image): image is string => image !== null),
       ...prevImages,
@@ -99,6 +98,7 @@ const Generate: React.FC = () => {
         getProps={getProps}
         getImages={getImages}
         setNumberImagesOption={setNumberImagesOption}
+        loading={loading}
       />
       <Gallery images={images} loading={loading} />
     </div>

@@ -122,14 +122,19 @@ def prompt_generation(file: bytes = File(...)):
     except Exception as e:
         logging.error(f"Error generating prompt: {e}")
         return JSONResponse(content={"error": f"Error generating prompt: {e}"}, status_code=500)
-    
+
     try:
-        translated_prompts = translator.translate(prompts, "en", "ru")
+        labels = [prompt["label"] for prompt in prompts]
+        translated_labels = translator.translate(labels, "en", "ru")
+        translated_prompts = [{"value": option["value"], "label": trans_label["text"]} for option, trans_label in
+                              zip(prompts, translated_labels["translations"])]
         response = {
             "en": prompts,
             "ru": translated_prompts
         }
         return JSONResponse(content=response)
+
+
     except Exception as e:
         logging.error(f"Error translating prompts: {e}")
         return [{"error": f"Error translating prompt: {e}"} for _ in prompts]

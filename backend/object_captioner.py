@@ -21,7 +21,6 @@ class ObjectCaptioner:
         inputs = self.processor(images=image, text=text, return_tensors="pt").to("cuda")
         out = self.model.generate(**inputs)
         caption = self.processor.decode(out[0], skip_special_tokens=True)
-        # take caption without the text (without the first 9 words)
         caption = " ".join(caption.split()[9:])
         return caption
 

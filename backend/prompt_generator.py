@@ -1,7 +1,6 @@
 import os
 
 import requests
-
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -76,7 +75,7 @@ class PromptGenerator:
             {
                 "role": "user",
                 "text": f"Главный объект: {object_text}. Дополнительные объекты: {', '.join(additional_objects)}."
-             }
+            }
         ]
         return data
 
@@ -84,6 +83,4 @@ class PromptGenerator:
 # Usage example
 if __name__ == '__main__':
     pg = PromptGenerator()
-    # print(pg.generate('Садовые качели, садовая мебель'))
-    # print(pg.generate('Лампа, освещение'))
     print(pg.generate('Стол', ['chair across the table', 'curtain in the background']))

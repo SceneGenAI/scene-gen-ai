@@ -1,7 +1,7 @@
 import io
 
-import torch
 import numpy as np
+import torch
 from PIL import Image, ImageOps
 from diffusers import DiffusionPipeline
 from transparent_background import Remover

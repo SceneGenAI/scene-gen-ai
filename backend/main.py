@@ -137,7 +137,13 @@ def background_generation(file: bytes, prompt: str):
 @app.post("/background-generation")
 async def get_images_endpoint(file: UploadFile = File(...), background: str = Form(...), style: str = Form(...)):
     contents = await file.read()
-    image = background_generation(contents, background)
+    # make prompt
+    #delete dot from the end of the prompt bqckground
+    if background[-1] == '.':
+        background = background[:-1]
+    prompt = f"{background}, {style} style."
+    print("style" + prompt)
+    image = background_generation(contents, prompt)
     if (background == ""):
         print("empty string")
         print(style)

@@ -74,7 +74,7 @@ class BackgroundGenerator:
         seed = 0
         img = Image.open(io.BytesIO(file)).convert('RGBA')
         img = self.clear_to_white(img)
-        img = self.expand_background(img, 1.5)
+        img = self.expand_background(img, 1.4)
         img = self.resize_with_padding(img, (512, 512))
 
         # Load background detection model
@@ -96,6 +96,7 @@ class BackgroundGenerator:
                 prompt=prompt, image=img,
                 mask_image=mask,
                 control_image=mask,
+                negative_prompt="low quality, bad quality, sketches, no artefacts",
                 num_images_per_prompt=1,
                 generator=generator,
                 num_inference_steps=20, guess_mode=False, controlnet_conditioning_scale=cond_scale
@@ -105,7 +106,14 @@ class BackgroundGenerator:
 
 if __name__ == '__main__':
     bg = BackgroundGenerator()
-    prompt = "A radiator in a cozy living room with a wooden wall."
+    prompt = ("A radiator in a cozy living room with a wooden wall, "
+              # "minimalistic interior style"
+              # "contemporary interior style"
+              # "scandinavian style"
+              # "Bohemian Eclectic style"
+              # "Traditional Elegance style"
+              "urban style"
+              )
     # prompt = "a swing chair on a background with building, floor-wood, grass, light, sky, tree"
     # prompt = "a swing chair in a blooming garden near the building"
     # prompt = "a swing chair on a background with building, floor-wood, grass, sky, tree"

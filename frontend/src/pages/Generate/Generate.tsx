@@ -17,9 +17,12 @@ const Generate: React.FC = () => {
   const [numberImagesOption, setNumberImagesOption] = useState<number>(1);
 
   const styleOptions = [
-    { value: 0, label: 'Minimalism' },
-    { value: 1, label: 'Modern' },
-    { value: 2, label: 'Classic' },
+    { value: 0, label: 'Contemporary' },
+    { value: 1, label: 'Minimalistic' },
+    { value: 2, label: 'Scandinavian' },
+    { value: 3, label: 'Bohemian eclectic' },
+    { value: 4, label: 'Traditional elegance' },
+    { value: 5, label: 'Urban' },
   ];
 
   const getProps = async (files: FileList) => {

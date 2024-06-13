@@ -74,7 +74,7 @@ class BackgroundGenerator:
         seed = 0
         img = Image.open(io.BytesIO(file)).convert('RGBA')
         img = self.clear_to_white(img)
-        img = self.expand_background(img, 1.2)
+        img = self.expand_background(img, 1.5)
         img = self.resize_with_padding(img, (512, 512))
 
         # Load background detection model

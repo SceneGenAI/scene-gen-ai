@@ -41,7 +41,7 @@ class PromptGenerator:
         # Additional parameters for the model
         data['completionOptions'] = {
             'stream': False,  # return all completions at once
-            'temperature': 0.3,  # the higher the temperature, the more random the completions
+            'temperature': 0.4,  # the higher the temperature, the more random the completions
             'max_tokens': 1000,  # the maximum number of tokens to generate
         }
 

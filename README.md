@@ -9,14 +9,13 @@ The tool is crucial for furniture marketplaces, online retailers, and e-commerce
 
 - Backend: Docker, Python, FastAPI, Uvicorn
 - Frontend: React, Vite, TypeScript
-- Database: MongoDB
-- ML: Python, PyTorch, probably MLFlow/AirFlow
+- ML: Python, PyTorch, Keras
 - HuggingFace libraries: Diffusers, Transformers
 
 
 ## Contributing
 
-We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests.
+Guide for installing a project in [CONTRIBUTING.md](CONTRIBUTING.md)
 
 
 ### License

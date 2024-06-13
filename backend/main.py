@@ -43,7 +43,7 @@ app.add_middleware(
 
 
 @app.post("/translate")
-def translate_text(texts: list[str], source_language: str, target_language: str):
+def translate_text(texts: list[str] = Form(...), source_language: str = Form(...), target_language: str = Form(...)):
     """
     Translate a list of texts
     :param texts: texts to translate

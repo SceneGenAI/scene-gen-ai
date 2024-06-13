@@ -1,6 +1,8 @@
 import base64
 import io
 import logging
+import cv2
+import numpy as np
 
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
@@ -10,6 +12,7 @@ from starlette.responses import Response
 from background_generator import BackgroundGenerator
 from object_captioner import ObjectCaptioner
 from prompt_generator import PromptGenerator
+from labels_generator import LabelsGenerator
 
 logging.basicConfig(level=logging.INFO)
 
@@ -17,6 +20,7 @@ logging.basicConfig(level=logging.INFO)
 object_captioner = ObjectCaptioner()
 prompt_generator = PromptGenerator()
 background_generator = BackgroundGenerator()
+labels_generator = LabelsGenerator('background_label_predictor.h5')
 #
 app = FastAPI(title="Image Generation with Diffusion Model",
               description='Generate images using a pretrained diffusion model.',
@@ -52,7 +56,9 @@ def generation_pipeline(file: bytes = File(...)):
         return Response(content=f"Error generating caption: {e}", media_type="text/plain")
 
     try:
-        prompt = prompt_generator.generate(object_text)
+        img = cv2.imdecode(np.frombuffer(file, np.uint8), cv2.IMREAD_COLOR)
+        labels = labels_generator.predict_labels(img, max_labels=2)
+        prompt = prompt_generator.generate(object_text, *labels)
         # take the first prompt
         print("-----------------")
         print(prompt)
@@ -83,8 +89,17 @@ def prompt_generation(file: bytes = File(...)):
         return JSONResponse(content={"error": f"Error generating caption: {e}"}, status_code=500)
 
     try:
-        prompt = prompt_generator.generate(caption)
-        logging.info("Prompt generated successfully.")
+        logging.info("Predicting labels...")
+        img = cv2.imdecode(np.frombuffer(file, np.uint8), cv2.IMREAD_COLOR)
+        labels = labels_generator.predict_labels(img, max_labels=2)
+        logging.info(f"Labels predicted successfully: {labels}")
+    except Exception as e:
+        logging.error(f"Error predicting labels: {e}")
+        return JSONResponse(content={"error": f"Error predicting labels: {e}"}, status_code=500)
+
+    try:
+        prompt = prompt_generator.generate(caption, labels)
+        logging.info(f"Prompt generated successfully: {prompt}")
         prompts = [{"value": idx, "label": prompt_line} for idx, prompt_line in enumerate(prompt.split('\n'))]
         return JSONResponse(content=prompts)
     except Exception as e:

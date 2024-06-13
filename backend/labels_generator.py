@@ -74,6 +74,6 @@ class LabelsGenerator:
 if __name__ == '__main__':
     # example of usage
     labels_generator = LabelsGenerator('background_label_predictor.h5')
-    img = cv2.imread('../dataset/example/image_test.png')
+    img = cv2.imread('images/bat.jpg')
     print(labels_generator.predict_labels(img))
     print(labels_generator.get_labels_by_threshold(img))

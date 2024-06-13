@@ -5,30 +5,20 @@ This project utilizes AI to seamlessly integrate furniture product images with a
 
 The tool is crucial for furniture marketplaces, online retailers, and e-commerce platforms aiming to enhance user engagement and streamline product display processes. It caters to both sellers, who benefit from reduced operational costs and improved visual appeal of their offerings, and buyers, who gain a clearer understanding of how products fit into their living spaces or desired environments before making a purchase.
 
-## Getting Started
+## Tech Stack:
 
-### Installation
-Clone the repository and install dependencies:
-```sh
-git clone https://github.com/your-repo-name
-cd your-repo-name
-pip install -r requirements.txt
-```
-
-### Usage
-Prepare product images in input_images folder and run:
-```sh
-python generate_backgrounds.py
-```
-
-Output images with integrated backgrounds will be saved in output_images folder.
+- Backend: Docker, Python, FastAPI, Uvicorn
+- Frontend: React, Vite, TypeScript
+- Database: MongoDB
+- ML: Python, PyTorch, probably MLFlow/AirFlow
+- HuggingFace libraries: Diffusers, Transformers
 
 
-### Contributing
+## Contributing
 
 We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests.
 
 
 ### License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) for details.
+This project is licensed under the MIT License - see [LICENSE.md](LICENSE.md) for details.

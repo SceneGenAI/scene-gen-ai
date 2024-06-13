@@ -37,19 +37,3 @@ cd frontend
 npm install
 npm run dev
 ```
-
-### Alternative: Run the Streamlit Frontend
-To run the automated pipeline, open a terminal window and run:
-```sh
-cd frontend-test
-streamlit run app.py
-```
-
-## Running with Docker
-
-To run the entire app using Docker (GPU support needs to be fixed), use the following commands:
-```sh
-docker-compose build
-docker-compose up
-```
-

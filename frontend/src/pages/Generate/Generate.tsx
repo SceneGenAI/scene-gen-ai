@@ -8,22 +8,36 @@ interface DropdownOption {
   label: string;
 }
 
+interface BackgroundOptions {
+  [key: string]: DropdownOption[];
+}
+
 const Generate: React.FC = () => {
   const [imageFile, setImageFile] = useState<File | null>(null);
-  const [backgroundOptions, setBackgroundOptions] = useState<DropdownOption[]>([]);
+  const [backgroundOptions, setBackgroundOptions] = useState<BackgroundOptions>({});
   const [responsePropsReceived, setResponsePropsReceived] = useState<boolean>(false);
   const [images, setImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(false);
   const [numberImagesOption, setNumberImagesOption] = useState<number>(1);
 
-  const styleOptions = [
-    { value: 0, label: 'Contemporary' },
-    { value: 1, label: 'Minimalistic' },
-    { value: 2, label: 'Scandinavian' },
-    { value: 3, label: 'Bohemian eclectic' },
-    { value: 4, label: 'Traditional elegance' },
-    { value: 5, label: 'Urban' },
-  ];
+  const styleOptions = {
+    en: [
+      { value: 0, label: 'Contemporary' },
+      { value: 1, label: 'Minimalistic' },
+      { value: 2, label: 'Scandinavian' },
+      { value: 3, label: 'Bohemian eclectic' },
+      { value: 4, label: 'Traditional elegance' },
+      { value: 5, label: 'Urban' },
+    ] as DropdownOption[],
+    ru: [
+      { value: 0, label: 'Современный' },
+      { value: 1, label: 'Минималистичный' },
+      { value: 2, label: 'Скандинавский' },
+      { value: 3, label: 'Богемная эклектика' },
+      { value: 4, label: 'Традиционная элегантность' },
+      { value: 5, label: 'Городской' },
+    ] as DropdownOption[],
+  };
 
   const getProps = async (files: FileList) => {
     const file = files[0];
@@ -40,7 +54,19 @@ const Generate: React.FC = () => {
 
       if (response.ok) {
         const data = await response.json();
-        setBackgroundOptions(data);
+
+        const formattedBackgroundOptions: BackgroundOptions = {
+          en: data.en.map((option: BackgroundOptions) => ({
+            value: option.value,
+            label: option.label,
+          })),
+          ru: data.ru.map((option: BackgroundOptions) => ({
+            value: option.value,
+            label: option.label,
+          })),
+        };
+
+        setBackgroundOptions(formattedBackgroundOptions);
         setResponsePropsReceived(true);
       } else {
         console.error('Failed to fetch dropdown options');

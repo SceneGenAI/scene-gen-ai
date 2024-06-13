@@ -1,5 +1,6 @@
 import './Dropdown.css';
 import React, { useState, useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useTheme, Theme } from '../../contexts/ThemeProvider';
 
 interface Option {
@@ -8,22 +9,26 @@ interface Option {
 }
 
 interface DropdownProps {
-  options: Option[];
+  options: { [key: string]: Option[] };
   onChange: (selectedValue: number) => void;
   label: string;
 }
 
 const Dropdown: React.FC<DropdownProps> = ({ options, onChange, label }) => {
+  const { i18n } = useTranslation();
   const { theme } = useTheme();
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [selectedValue, setSelectedValue] = useState<number>(0);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (options.length > 0 && !selectedValue) {
-      setSelectedValue(options[0].value);
+    if (
+      options[i18n.language].length > 0 &&
+      !options[i18n.language].find((opt) => opt.value === selectedValue)
+    ) {
+      setSelectedValue(options[i18n.language][0].value);
     }
-  }, [options, selectedValue]);
+  }, [i18n.language, selectedValue]);
 
   const handleToggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -55,7 +60,8 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onChange, label }) => {
       </label>
       <div className={`dropdown-header ${isOpen ? 'open' : ''}`} onClick={handleToggleDropdown}>
         <div className="dropdown-header-text">
-          {options.find((option) => option.value === selectedValue)?.label || 'Пусто'}{' '}
+          {options[i18n.language].find((option) => option.value === selectedValue)?.label ||
+            'Пусто'}{' '}
         </div>
         {theme === Theme.LIGHT ? (
           <img
@@ -73,7 +79,7 @@ const Dropdown: React.FC<DropdownProps> = ({ options, onChange, label }) => {
       </div>
       {isOpen && (
         <div className="dropdown-options">
-          {options.map((option) => (
+          {options[i18n.language].map((option) => (
             <div
               key={option.value}
               className="dropdown-option dropdown-option-scrollable"

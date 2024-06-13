@@ -10,8 +10,8 @@ interface DropdownOption {
 
 interface GenerateProps {
   imageFile: File | null;
-  backgroundOptions: DropdownOption[];
-  styleOptions: { value: number; label: string }[];
+  backgroundOptions: { [key: string]: DropdownOption[] };
+  styleOptions: { [key: string]: DropdownOption[] };
   responsePropsReceived: boolean;
   getProps: (files: FileList) => Promise<void>;
   getImages: (background: string, style: string) => Promise<void>;

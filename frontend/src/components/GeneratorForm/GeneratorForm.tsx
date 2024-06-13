@@ -6,9 +6,14 @@ import TextField from '../TextField/TextField';
 import RingSpinner from '../RingSpinner/RingSpinner';
 import ToggleButton from '../ToggleButton/ToggleButton';
 
+interface DropdownOption {
+  value: number;
+  label: string;
+}
+
 interface GeneratorProps {
-  backgroundOptions: { value: number; label: string }[];
-  styleOptions: { value: number; label: string }[];
+  backgroundOptions: { [key: string]: DropdownOption[] };
+  styleOptions: { [key: string]: DropdownOption[] };
   responsePropsReceived: boolean;
   imageFile: File | null;
   getImages: (background: string, style: string) => void;
@@ -25,7 +30,7 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
   setNumberImagesOption,
   loading,
 }) => {
-  const { t }: { t: (key: string) => string } = useTranslation();
+  const { t } = useTranslation();
   const [backgroundDropdown, setBackgroundDropdown] = useState<number>(0);
   const [styleDropdown, setStyleDropdown] = useState<number>(0);
   const [backgroundText, setBackgroundText] = useState<string>('');
@@ -35,10 +40,10 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
   const handleGenerate = async () => {
     const background = useTextField
       ? backgroundText
-      : backgroundOptions.find((option) => option.value === backgroundDropdown)?.label || '';
+      : backgroundOptions['en'].find((option) => option.value === backgroundDropdown)?.label || '';
     const style = useTextField
       ? styleText
-      : styleOptions.find((option) => option.value === styleDropdown)?.label || '';
+      : styleOptions['en'].find((option) => option.value === styleDropdown)?.label || '';
 
     await getImages(background, style);
   };

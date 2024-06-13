@@ -1,43 +1,23 @@
-# scene-gen-ai
-frontend - main front with React
-frontend-test - test front with streamlit
+# Scene Generation AI
 
-http://localhost:8000/docs - api documentation
 
-http://localhost:5173/ - react frontend
+This project utilizes AI to seamlessly integrate furniture product images with appropriate backgrounds, enhancing visual representation on e-commerce platforms like Leroy Merlin. By automating the process of generating realistic product environments, it eliminates the need for costly and time-consuming photoshoots or complex 3D rendering. This innovation enables users to visualize furniture in context, aiding in better purchasing decisions and improving overall customer satisfaction.
 
-http://localhost:8501 - streamlit frontend
+The tool is crucial for furniture marketplaces, online retailers, and e-commerce platforms aiming to enhance user engagement and streamline product display processes. It caters to both sellers, who benefit from reduced operational costs and improved visual appeal of their offerings, and buyers, who gain a clearer understanding of how products fit into their living spaces or desired environments before making a purchase.
 
-### before running, make sure all requirements are satisfied:
-```
-pip install -r requirements.txt
+## Tech Stack:
 
-pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121 --no-cache-dir
-pip install -qq -U diffusers datasets transformers accelerate ftfy pyarrow==9.0.0 --no-cache-dir
-```
+- Backend: Docker, Python, FastAPI, Uvicorn
+- Frontend: React, Vite, TypeScript
+- ML: Python, PyTorch, Keras
+- HuggingFace libraries: Diffusers, Transformers
 
-### also node.js and npm are needed
 
-### to run locally                                                                                              
-one window
-```
-cd backend
-uvicorn main:app --host 0.0.0.0 --port 8000
-```
-second window
-```
-cd frontend
-npm install
-npm run dev
-```
+## Contributing
 
-or for automated pipeline
-```
-cd frontend-test
-streamlit run app.py
-```
-### to run the whole app with docker (need to fix gpu support)
-```
-docker-compose build
-docker-compose up
-```
+Guide for installing a project in [CONTRIBUTING.md](CONTRIBUTING.md)
+
+
+### License
+
+This project is licensed under the MIT License - see [LICENSE.md](LICENSE.md) for details.

@@ -1,18 +1,18 @@
 import base64
 import io
 import logging
+
 import cv2
 import numpy as np
-
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from starlette.responses import Response
 
 from background_generator import BackgroundGenerator
+from labels_generator import LabelsGenerator
 from object_captioner import ObjectCaptioner
 from prompt_generator import PromptGenerator
-from labels_generator import LabelsGenerator
 from translate import Translator
 from config import IAM_TOKEN, FOLDER_ID
 
@@ -149,7 +149,6 @@ def background_generation(file: bytes, prompt: str):
     try:
         if not prompt:
             prompt = 'An object in the living room with grey-blue walls'
-        # Assume background_generator.get_generated_picture is a valid function
         generated_image = background_generator.get_generated_picture(file, prompt)
         bytes_io = io.BytesIO()
         generated_image.save(bytes_io, format='PNG')
@@ -165,7 +164,12 @@ def background_generation(file: bytes, prompt: str):
 @app.post("/background-generation")
 async def get_images_endpoint(file: UploadFile = File(...), background: str = Form(...), style: str = Form(...)):
     contents = await file.read()
-    image = background_generation(contents, background)
+    # make prompt
+    if background[-1] == '.':
+        background = background[:-1]
+    prompt = f"{background}, {style} style."
+    print("style" + prompt)
+    image = background_generation(contents, prompt)
     if (background == ""):
         print("empty string")
         print(style)

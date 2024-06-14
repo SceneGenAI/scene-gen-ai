@@ -48,11 +48,22 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
       : styleOptions['en'].find((option) => option.value === styleDropdown)?.label || '';
 
     if (i18n.language === 'ru') {
+      console.log(backgroundText, styleText);
       if (useTextField) {
-        background = await translateText(backgroundText, 'ru', 'en');
+        if (backgroundText !== '') {
+          background = await translateText(backgroundText, 'ru', 'en');
+        } else {
+          background =
+            backgroundOptions['en'].find((option) => option.value === backgroundDropdown)?.label ||
+            '';
+        }
       }
       if (useTextField) {
-        style = await translateText(styleText, 'ru', 'en');
+        if (styleText !== '') {
+          style = await translateText(styleText, 'ru', 'en');
+        } else {
+          style = styleOptions['en'].find((option) => option.value === styleDropdown)?.label || '';
+        }
       }
     }
     await getImages(background, style, numberImages);

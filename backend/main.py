@@ -43,7 +43,7 @@ app.add_middleware(
 
 
 @app.post("/translate")
-def translate_text(texts: list[str], source_language: str, target_language: str):
+def translate_text(texts: list[str] = Form(...), source_language: str = Form(...), target_language: str = Form(...)):
     """
     Translate a list of texts
     :param texts: texts to translate
@@ -153,8 +153,8 @@ async def get_images_endpoint(file: UploadFile = File(...), background: str = Fo
     :param number_images: number of images to generate at a time
     :return: JSONResponse of array with images
     """
-
     styles = ['Contemporary', 'Minimalistic', 'Scandinavian', 'Bohemian eclectic', 'Traditional elegance', 'Urban']
+
     contents = await file.read()
     # make prompt
     if background[-1] == '.':
@@ -162,7 +162,8 @@ async def get_images_endpoint(file: UploadFile = File(...), background: str = Fo
 
     images = []
     if number_images > 1:
-        styles.remove(style)
+        if style in styles:
+            styles.remove(style)
         styles_to_choose = np.random.choice(styles, number_images - 1, replace=False)
 
     for i in range(number_images):

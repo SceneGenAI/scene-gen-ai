@@ -16,8 +16,9 @@ interface GeneratorProps {
   styleOptions: { [key: string]: DropdownOption[] };
   responsePropsReceived: boolean;
   imageFile: File | null;
-  getImages: (background: string, style: string) => void;
+  getImages: (background: string, style: string, number_images: number) => void;
   setNumberImagesOption: React.Dispatch<React.SetStateAction<number>>;
+  numberImages: number;
   loading: boolean;
 }
 
@@ -28,9 +29,10 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
   imageFile,
   getImages,
   setNumberImagesOption,
+  numberImages,
   loading,
 }) => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [backgroundDropdown, setBackgroundDropdown] = useState<number>(0);
   const [styleDropdown, setStyleDropdown] = useState<number>(0);
   const [backgroundText, setBackgroundText] = useState<string>('');
@@ -38,14 +40,60 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
   const [useTextField, setUseTextField] = useState<boolean>(false);
 
   const handleGenerate = async () => {
-    const background = useTextField
+    let background = useTextField
       ? backgroundText
       : backgroundOptions['en'].find((option) => option.value === backgroundDropdown)?.label || '';
-    const style = useTextField
+    let style = useTextField
       ? styleText
       : styleOptions['en'].find((option) => option.value === styleDropdown)?.label || '';
 
-    await getImages(background, style);
+    if (i18n.language === 'ru') {
+      console.log(backgroundText, styleText);
+      if (useTextField) {
+        if (backgroundText !== '') {
+          background = await translateText(backgroundText, 'ru', 'en');
+        } else {
+          background =
+            backgroundOptions['en'].find((option) => option.value === backgroundDropdown)?.label ||
+            '';
+        }
+      }
+      if (useTextField) {
+        if (styleText !== '') {
+          style = await translateText(styleText, 'ru', 'en');
+        } else {
+          style = styleOptions['en'].find((option) => option.value === styleDropdown)?.label || '';
+        }
+      }
+    }
+    await getImages(background, style, numberImages);
+  };
+
+  const translateText = async (
+    text: string,
+    sourceLanguage: string,
+    targetLanguage: string,
+  ): Promise<string> => {
+    const formData = new FormData();
+    formData.append('texts', text);
+    formData.append('source_language', sourceLanguage);
+    formData.append('target_language', targetLanguage);
+    try {
+      const response = await fetch(`http://localhost:8000/translate`, {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`Translation request failed with status ${response.status}`);
+      }
+
+      const data = await response.json();
+      return data['translations'][0]['text'];
+    } catch (error) {
+      console.error('Error translating text:', error);
+      return '';
+    }
   };
 
   const handleNumberImagesSelect = (value: number) => {

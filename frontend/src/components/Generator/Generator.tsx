@@ -14,8 +14,9 @@ interface GenerateProps {
   styleOptions: { [key: string]: DropdownOption[] };
   responsePropsReceived: boolean;
   getProps: (files: FileList) => Promise<void>;
-  getImages: (background: string, style: string) => Promise<void>;
+  getImages: (background: string, style: string, number_images: number) => Promise<void>;
   setNumberImagesOption: React.Dispatch<React.SetStateAction<number>>;
+  numberImages: number;
   loading: boolean;
 }
 
@@ -27,6 +28,7 @@ const Generator: React.FC<GenerateProps> = ({
   getProps,
   getImages,
   setNumberImagesOption,
+  numberImages,
   loading,
 }) => {
   return (
@@ -51,6 +53,7 @@ const Generator: React.FC<GenerateProps> = ({
           imageFile={imageFile}
           getImages={getImages}
           setNumberImagesOption={setNumberImagesOption}
+          numberImages={numberImages}
           loading={loading}
         />
       </div>

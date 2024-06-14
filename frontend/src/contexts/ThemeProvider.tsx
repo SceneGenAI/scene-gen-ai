@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 
 export enum Theme {
   LIGHT = 'light',
@@ -25,7 +25,11 @@ type Props = {
 };
 
 export const ThemeProvider: React.FC<Props> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>(Theme.LIGHT);
+  const [theme, setTheme] = useState<Theme>(Theme.DARK);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('color-scheme', 'dark');
+  }, []);
 
   const toggleTheme = () => {
     setTheme((prevTheme) => {

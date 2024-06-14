@@ -78,12 +78,13 @@ const Generate: React.FC = () => {
     }
   };
 
-  const getImages = async (background: string, style: string) => {
+  const getImages = async (background: string, style: string, numberImages: number) => {
     const sendRequest = async () => {
       const formData = new FormData();
       formData.append('file', imageFile as File);
       formData.append('background', background);
       formData.append('style', style);
+      formData.append('number_images', numberImages.toString());
 
       try {
         const response = await fetch('http://localhost:8000/background-generation', {
@@ -93,28 +94,20 @@ const Generate: React.FC = () => {
 
         if (response.ok) {
           const result = await response.json();
-          return result.image;
+          return result.images;
         } else {
           console.error('Failed to generate image');
         }
       } catch (error) {
         console.error('Error:', error);
       }
-      return null;
+      return [];
     };
 
-    const promises = [];
-    for (let i = 0; i < numberImagesOption; i++) {
-      promises.push(sendRequest());
-    }
-
     setLoading(true);
-    const imagesResult = await Promise.all(promises);
+    const imagesResult = await sendRequest();
     setLoading(false);
-    setImages((prevImages) => [
-      ...imagesResult.filter((image): image is string => image !== null),
-      ...prevImages,
-    ]);
+    setImages((prevImages) => [...imagesResult, ...prevImages]);
   };
 
   return (
@@ -127,6 +120,7 @@ const Generate: React.FC = () => {
         getProps={getProps}
         getImages={getImages}
         setNumberImagesOption={setNumberImagesOption}
+        numberImages={numberImagesOption}
         loading={loading}
       />
       <Gallery images={images} loading={loading} />

@@ -2,6 +2,7 @@ import os
 
 import requests
 from dotenv import load_dotenv
+from config import CATALOG_ID, KEY
 
 load_dotenv()
 
@@ -13,8 +14,10 @@ class PromptGenerator:
     """
 
     def __init__(self):
-        self.private_key = os.getenv('API_SECRET')
-        self.catalog_id = os.getenv('CATALOG_ID')
+        # self.private_key = os.getenv('API_SECRET')
+        # self.catalog_id = os.getenv('CATALOG_ID')
+        self.private_key = KEY
+        self.catalog_id = CATALOG_ID
 
         self.url = 'https://llm.api.cloud.yandex.net/foundationModels/v1/completion'
         self.data = self._data_init()

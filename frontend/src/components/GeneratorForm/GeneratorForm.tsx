@@ -16,8 +16,9 @@ interface GeneratorProps {
   styleOptions: { [key: string]: DropdownOption[] };
   responsePropsReceived: boolean;
   imageFile: File | null;
-  getImages: (background: string, style: string) => void;
+  getImages: (background: string, style: string, number_images: number) => void;
   setNumberImagesOption: React.Dispatch<React.SetStateAction<number>>;
+  numberImages: number;
   loading: boolean;
 }
 
@@ -28,6 +29,7 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
   imageFile,
   getImages,
   setNumberImagesOption,
+  numberImages,
   loading,
 }) => {
   const { t, i18n } = useTranslation();
@@ -53,7 +55,7 @@ const GeneratorForm: React.FC<GeneratorProps> = ({
         style = await translateText(styleText, 'ru', 'en');
       }
     }
-    await getImages(background, style);
+    await getImages(background, style, numberImages);
   };
 
   const translateText = async (

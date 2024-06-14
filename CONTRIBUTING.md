@@ -31,7 +31,13 @@ https://nodejs.org/en/download/prebuilt-installer
 cd backend
 uvicorn main:app --host 0.0.0.0 --port 8000
 ```
-
+Note: лучше подождать появления подобного сообщения о запуске сервера перед запуском фронтенда:
+```
+INFO:     Started server process [16160]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+```
 ### Шаг 2: Запустите интерфейс React
 Откройте второе окно терминала и запустите:
 ```sh

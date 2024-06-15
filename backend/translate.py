@@ -17,7 +17,7 @@ class Translator:
 
         headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {self.iam_token}"
+            "Authorization": f"Api-Key {self.iam_token}"
         }
 
         response = requests.post(self.base_url, json=body, headers=headers)
@@ -30,9 +30,9 @@ class Translator:
 
 # Usage example
 if __name__ == '__main__':
-    from config import IAM_TOKEN, FOLDER_ID
+    from config import KEY_TRANSLATE, TRANSLATE_CATALOG
 
-    translator = Translator(IAM_TOKEN, FOLDER_ID)
+    translator = Translator(KEY_TRANSLATE, TRANSLATE_CATALOG)
 
     texts = ["Hello, how are you?", "I am fine, thank you!"]
     source_language = "en"

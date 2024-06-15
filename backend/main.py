@@ -10,7 +10,7 @@ from fastapi.responses import JSONResponse
 from starlette.responses import Response
 
 from background_generator import BackgroundGenerator
-from config import IAM_TOKEN, FOLDER_ID
+from config import KEY_TRANSLATE, TRANSLATE_CATALOG
 from labels_generator import LabelsGenerator
 from object_captioner import ObjectCaptioner
 from prompt_generator import PromptGenerator
@@ -19,7 +19,7 @@ from translate import Translator
 logging.basicConfig(level=logging.INFO)
 
 # Initialize translation service
-translator = Translator(IAM_TOKEN, FOLDER_ID)
+translator = Translator(KEY_TRANSLATE, TRANSLATE_CATALOG)
 
 # Pre-load needed models
 object_captioner = ObjectCaptioner()

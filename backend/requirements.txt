@@ -1,5 +1,8 @@
 fastapi
 starlette
 Pillow
-diffusers
+diffusers~=0.28.0
 transparent-background
+requests-toolbelt
+requests
+uvicorn

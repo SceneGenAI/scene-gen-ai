@@ -29,6 +29,11 @@ RUN pip3 install --no-cache-dir -r requirements.txt
 
 RUN pip3 install -qq -U diffusers datasets transformers accelerate ftfy pyarrow==9.0.0
 
+RUN pip3 install tensorflow[and-cuda]
+
+RUN pip3 install typing-extensions --upgrade
+
+
 # Copy the current directory contents into the container at /app
 COPY . /app
 

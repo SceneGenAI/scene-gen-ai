@@ -1,23 +1,24 @@
-# Scene Generation AI
+#  Искусственный интеллект для создания фонов
 
 
-This project utilizes AI to seamlessly integrate furniture product images with appropriate backgrounds, enhancing visual representation on e-commerce platforms like Leroy Merlin. By automating the process of generating realistic product environments, it eliminates the need for costly and time-consuming photoshoots or complex 3D rendering. This innovation enables users to visualize furniture in context, aiding in better purchasing decisions and improving overall customer satisfaction.
+В этом проекте искусственный интеллект используется для плавной интеграции изображений мебельных изделий с соответствующими фонами, что улучшает визуальное представление на платформах электронной коммерции, таких как Leroy Merlin. Автоматизируя процесс создания реалистичного окружения продукта, компания устраняет необходимость в дорогостоящих и трудоемких фотосессиях или сложном 3D-рендеринге. Это нововведение позволяет пользователям визуализировать мебель в контексте, что помогает принимать более правильные решения о покупке и повышает общую удовлетворенность клиентов.
 
-The tool is crucial for furniture marketplaces, online retailers, and e-commerce platforms aiming to enhance user engagement and streamline product display processes. It caters to both sellers, who benefit from reduced operational costs and improved visual appeal of their offerings, and buyers, who gain a clearer understanding of how products fit into their living spaces or desired environments before making a purchase.
+Этот инструмент имеет решающее значение для мебельных рынков, онлайн-магазинов розничной торговли и платформ электронной коммерции, направленных на повышение вовлеченности пользователей и оптимизацию процессов демонстрации товаров. Это выгодно как продавцам, которые выигрывают от снижения эксплуатационных расходов и повышения визуальной привлекательности своих предложений, так и покупателям, которые получают более четкое представление о том, как продукты вписываются в их жилое пространство или желаемую обстановку, прежде чем совершить покупку.
 
-## Tech Stack:
+## Технологический стек:
 
-- Backend: Docker, Python, FastAPI, Uvicorn
+- Backend: Python, FastAPI, Uvicorn
 - Frontend: React, Vite, TypeScript
 - ML: Python, PyTorch, Keras
 - HuggingFace libraries: Diffusers, Transformers
 
 
-## Contributing
+## Запуск
 
-Guide for installing a project in [CONTRIBUTING.md](CONTRIBUTING.md)
+Инструкция по запуску: [CONTRIBUTING.md](CONTRIBUTING.md).
 
 
-### License
+### Лицензия
+
 
 This project is licensed under the MIT License - see [LICENSE.md](LICENSE.md) for details.
